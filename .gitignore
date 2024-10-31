@@ -17,7 +17,7 @@ target/
 Thumbs.db
 
 ##DB Connect file
-src/main/java/com/example/backend/DatabaseConnection.java
+/src/main/java/com/example/backend/DatabaseConnection.java
 
 #Temporary files
 *.swp
