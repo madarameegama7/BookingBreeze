@@ -31,6 +31,7 @@ Thumbs.db
 /build/
 .gradle/
 build.gradle
+pom.xml
 
 #build artifacts
 /bin/
