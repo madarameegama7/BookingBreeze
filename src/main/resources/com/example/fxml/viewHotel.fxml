@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="543.0" prefWidth="867.0" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controllers.ViewHotelController">
+    <center>
+        <TableView fx:id="hotelTableView" prefHeight="417.0" prefWidth="800.0" styleClass="hotel-table" BorderPane.alignment="CENTER">
+            <columns>
+                <TableColumn fx:id="userIdColumn" prefWidth="100.0" text="User ID" />
+                <TableColumn fx:id="hotelIdColumn" prefWidth="100.0" text="Hotel ID" />
+                <TableColumn fx:id="hotelNameColumn" prefWidth="150.0" text="Hotel Name" />
+                <TableColumn fx:id="registrationNoColumn" prefWidth="130.0" text="Registration No" />
+                <TableColumn fx:id="locationColumn" prefWidth="150.0" text="Address" />
+                <TableColumn fx:id="contactNumColumn" prefWidth="100.0" text="Contact No" />
+                <TableColumn fx:id="facilitiesColumn" prefWidth="120.0" text="Facilities" />
+            </columns>
+        </TableView>
+    </center>
+    <top>
+        <AnchorPane prefHeight="154.0" prefWidth="867.0" BorderPane.alignment="CENTER">
+            <children>
+                <Label layoutX="353.0" layoutY="26.0" style="-fx-font-weight: bold;" text="Booking" textFill="#091726">
+                    <font>
+                        <Font name="Arial" size="22.0" />
+                    </font>
+                </Label>
+                <Label layoutX="441.0" layoutY="26.0" style="-fx-font-weight: bold;" text="Breeze" textFill="#0470dc">
+                    <font>
+                        <Font name="Arial" size="22.0" />
+                    </font>
+                </Label>
+                <Label layoutX="363.0" layoutY="93.0" styleClass="header-label" text="Registered Hotels">
+                    <font>
+                        <Font name="Book Antiqua" size="18.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+    </top>
+</BorderPane>
