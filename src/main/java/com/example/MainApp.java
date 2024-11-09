@@ -9,7 +9,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fxml/login.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fxml/viewFeedback.fxml"));
         Scene scene = new Scene(loader.load());
         primaryStage.setScene(scene);
         primaryStage.setTitle("BookingBreeze Login");
