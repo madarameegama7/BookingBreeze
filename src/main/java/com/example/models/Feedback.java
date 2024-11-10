@@ -8,8 +8,7 @@ public class Feedback {
         private String userEmail;
 
         // Constructor
-        public Feedback(int feedbackID, int userID, String username, String feedback, String userEmail) {
-            this.feedbackID = feedbackID;
+        public Feedback(int userID, String username, String feedback, String userEmail) {
             this.userID = userID;
             this.username = username;
             this.feedback = feedback;

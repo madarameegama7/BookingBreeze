@@ -8,8 +8,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -25,16 +23,14 @@ public class SignupController {
     @FXML
     private PasswordField passwordField;
     @FXML
-    private TextField contactNumberField; // New field for contact number
+    private TextField contactNumberField;
     @FXML
-    private TextField addressField;       // New field for address
-    @FXML
-    private Label messageLabel;
+    private TextField addressField;
 
     private final UserService userService = new UserService();
 
     @FXML
-    public void signup(ActionEvent event) {
+    public void signup(ActionEvent event) throws IOException {
         String username = usernameField.getText().trim();
         String email = emailField.getText().trim();
         String password = passwordField.getText().trim();
@@ -47,7 +43,7 @@ public class SignupController {
         }
 
         if (!userService.isEmailValid(email)) {
-            showAlert("Invalid email format. Please include '@' and end with '.com'.");
+            showAlert("Invalid email format.");
             return;
         }
 
@@ -56,22 +52,9 @@ public class SignupController {
             return;
         }
 
-        // If signup is successful, display the dashboard directly
         if (userService.signup(email, username, password, contactNumber, address)) {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fxml/userdashboard.fxml"));
-                Parent root = loader.load();
-
-                // Pass user data to the DashboardController
-                DashboardController dashboardController = loader.getController();
-                //dashboardController.setUserEmail(email); // Pass email or other user data as needed
-
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                stage.setScene(new Scene(root));
-                stage.show();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            showAlert("Signup successful! You can now log in.");
+            switchToLogin(event);
         } else {
             showAlert("Signup failed. Username or email may already exist.");
         }
@@ -85,9 +68,8 @@ public class SignupController {
         stage.show();
     }
 
-    // Show alert method for displaying error or success messages
     private void showAlert(String message) {
-        Alert alert = new Alert(AlertType.INFORMATION);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Signup Information");
         alert.setHeaderText(null);
         alert.setContentText(message);
