@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500" prefWidth="700" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controllers.ViewFeedbackController">
+    <!-- TableView Section: Centered in BorderPane -->
+    <center>
+        <TableView fx:id="feedbackTableView" prefHeight="417.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+            <columns>
+                <TableColumn fx:id="userIdColumn" prefWidth="83.2" text="User ID" />
+                <TableColumn fx:id="userNameColumn" prefWidth="156.0" text="User Name" />
+                <TableColumn fx:id="feedbackColumn" prefWidth="202.4" text="User Email" />
+                <TableColumn fx:id="userEmailColumn" prefWidth="129.6" text="Feedback" />
+            </columns>
+        </TableView>
+    </center>
+
+    <!-- Top Section: Header with Labels -->
+    <top>
+        <AnchorPane prefHeight="126.0" prefWidth="667.0" BorderPane.alignment="CENTER">
+            <children>
+                <Label layoutX="278.0" layoutY="25.0" text="Booking">
+                    <font>
+                        <Font size="19.0" />
+                    </font>
+                </Label>
+                <Label layoutX="348.0" layoutY="25.0" text="Breeze" textFill="#2e20ae">
+                    <font>
+                        <Font size="19.0" />
+                    </font>
+                </Label>
+                <Label layoutX="271.0" layoutY="78.0" text="Registered Hotels">
+                    <font>
+                        <Font name="Book Antiqua" size="18.0" />
+                    </font>
+                </Label>
+            <Button layoutX="92.0" layoutY="66.0" mnemonicParsing="false" onAction="#backToDashboard" prefHeight="26.0" prefWidth="94.0" style="-fx-background-color: #2e20ae;" text="Back" />
+            <ImageView fitHeight="25.0" fitWidth="26.0" layoutX="92.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/icons8-back-64.png" />
+               </image>
+            </ImageView>
+            </children>
+        </AnchorPane>
+    </top>
+</BorderPane>

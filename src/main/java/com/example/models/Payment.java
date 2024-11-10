@@ -11,8 +11,9 @@ public class Payment {
     private double payment;
     private String paymentType;
     private Date paymentDate;
+    private String paymentStatus;
 
-    public Payment(int paymentID, int discountID, int userID, int reservationID, double payment, String paymentType) {
+    public Payment(int paymentID, int discountID, int userID, int reservationID, double payment, String paymentType, Date paymentDate, String paymentStatus) {
         this.paymentID = paymentID;
         this.discountID = discountID;
         this.userID = userID;
@@ -20,6 +21,7 @@ public class Payment {
         this.payment = payment;
         this.paymentType = paymentType;
         this.paymentDate = paymentDate;
+        this.paymentStatus = paymentStatus;
     }
 
     public int getPaymentID() {
@@ -77,6 +79,12 @@ public class Payment {
     public void setPaymentDate(Date paymentDate) {
         this.paymentDate = paymentDate;
     }
+
+    public String getPaymentStatus() {
+        return paymentStatus;
+    }
+
+    public void setPaymentStatus(String paymentStatus) {
+        this.paymentStatus = paymentStatus;
+    }
 }
-
-

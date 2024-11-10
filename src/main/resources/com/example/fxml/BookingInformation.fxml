@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fxml.BookingInformation">
+   <children>
+      <Line endX="57.0" endY="-0.9999923706054688" layoutX="308.0" layoutY="61.0" startX="-72.00001525878906" startY="-0.9999923706054688" stroke="#d1cece" />
+      <Text fill="#152adf" layoutX="252.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Booking">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Text>
+      <Text layoutX="308.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Breeze">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Text>
+      <Line endX="485.0" endY="7.62939453125E-6" fill="#c1bcbc" layoutX="115.0" layoutY="36.0" startX="-115.00001525878906" startY="7.62939453125E-6" stroke="#c1bcbc" />
+      <Circle fill="#24c494" layoutX="236.0" layoutY="60.0" radius="16.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+      <Circle fill="#c5c9c8" layoutX="365.0" layoutY="60.0" radius="16.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+      <Circle fill="#c5c9c8" layoutX="302.0" layoutY="61.0" radius="16.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+      <Text fill="#848383" layoutX="297.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fill="#848383" layoutX="360.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text fill="#100389" layoutX="213.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Booking Information">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Text>
+      <Text fill="#7e7c7c" layoutX="224.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please fill up the blank fields below">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>
