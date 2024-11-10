@@ -2,7 +2,6 @@ package com.example.controllers;
 
 import com.example.backend.HotelServices;
 import com.example.models.Hotel;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,16 +12,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.paint.Color;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import java.io.ByteArrayInputStream;
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.util.List;
 
 
@@ -69,7 +61,7 @@ public class ViewHotelController {
     }
     @FXML
     public void searchHotels(ActionEvent event) throws IOException{
-        Parent root = FXMLLoader.load(getClass().getResource("/com/example/fxml/search.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/com/example/fxml/searchHotels.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.show();

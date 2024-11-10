@@ -1,6 +1,7 @@
 package com.example.controllers;
 
 import com.example.backend.UserService;
+import com.example.models.Session;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -33,7 +34,13 @@ public class LoginController {
             return;
         }
 
-        if (userService.login(email, password)) {
+        int userId = userService.login(email, password);
+
+        if (userId != -1) {
+            Session.getInstance().setUserId(userId);// If userId is valid, login successful
+            // Store the userId for later use (e.g., in a session or controller)
+            System.out.println("User ID: " + userId);
+
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fxml/userdashboard.fxml"));
                 Parent root = loader.load();
@@ -43,6 +50,7 @@ public class LoginController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
         } else {
             showAlert("Invalid email or password.");
         }

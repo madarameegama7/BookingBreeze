@@ -26,6 +26,13 @@ public class DashboardController {
     @FXML
     private VBox settingsView;
 
+    private int userId;
+
+    // Getter and Setter for userId
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
 
     private User currentUser;  // Store the logged-in user
 
@@ -63,6 +70,14 @@ public class DashboardController {
         UserProfileController profileController = loader.getController();
         profileController.setUser(currentUser);
 
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+    @FXML
+    public void viewPayment(ActionEvent event) throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fxml/PaymentView.fxml"));
+        Parent root = loader.load();
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.show();
