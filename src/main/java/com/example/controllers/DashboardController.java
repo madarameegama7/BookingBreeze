@@ -38,6 +38,7 @@ public class DashboardController {
 
     // Method to set the current user
     public void setUser(User user) {
+
         this.currentUser = user;
     }
     @FXML
@@ -62,17 +63,22 @@ public class DashboardController {
         stage.show();
     }
     @FXML
-    public void viewProfile(ActionEvent event) throws IOException{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fxml/userProfile.fxml"));
-        Parent root = loader.load();
+    private void handleviewProfile(ActionEvent event) {
+        if (currentUser != null) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fxml/userprofile.fxml"));
+                Parent root = loader.load();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                UserProfileUpdateController controller = loader.getController();
+                controller.setUserData(currentUser);
 
-        // Get the UserProfileController and set the user data
-        UserProfileController profileController = loader.getController();
-        profileController.setUser(currentUser);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.show();
+        }
     }
     @FXML
     public void viewPayment(ActionEvent event) throws IOException{
@@ -89,6 +95,17 @@ public class DashboardController {
         stage.setScene(new Scene(root));
         stage.show();
     }
+    @FXML
+    private void handleLogout(ActionEvent event) throws IOException {
+        // Redirect to the login screen or close the current window
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fxml/login.fxml"));
+        Parent root = loader.load();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+
 
 
 

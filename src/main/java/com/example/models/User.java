@@ -1,6 +1,8 @@
 package com.example.models;
 
 public class User {
+
+    private int userID;
     private String email;
     private String username;
     private String contactNumber;
@@ -13,6 +15,9 @@ public class User {
         this.address = address;
     }
 
+    public int getUserID(){return userID;}
+
+    // Getters
     public String getEmail() {
         return email;
     }
@@ -28,4 +33,25 @@ public class User {
     public String getAddress() {
         return address;
     }
+
+    // Setters
+    public void setUserID(int userID){this.userID=userID;}
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setContactNumber(String contactNumber) {
+        this.contactNumber = contactNumber;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+
+
 }

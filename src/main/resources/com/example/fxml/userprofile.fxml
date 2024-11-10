@@ -7,11 +7,11 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controllers.LoginController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controllers.UserProfileUpdateController">
     <left>
-        <AnchorPane prefHeight="478.0" prefWidth="226.0" style="-fx-background-color: #000B58;" BorderPane.alignment="CENTER">
+        <AnchorPane prefHeight="500.0" prefWidth="223.0" style="-fx-background-color: #000B58;" BorderPane.alignment="CENTER">
             <children>
-                <Label alignment="CENTER" layoutX="-2.0" layoutY="159.0" prefHeight="26.0" prefWidth="129.0" text="Booking" textFill="#1b1a1a">
+                <Label alignment="CENTER" layoutY="159.0" prefHeight="26.0" prefWidth="144.0" text="Booking" textFill="#1b1a1a">
                     <font>
                         <Font name="Verdana Bold" size="20.0" />
                     </font>
@@ -32,40 +32,44 @@
                         <Font name="Verdana Bold" size="22.0" />
                     </font>
                 </Label>
-                <Label fx:id="emailLabel" layoutX="39.0" layoutY="119.0" prefHeight="18.0" prefWidth="57.0" text="Email">
+                <Label fx:id="emailLabel" layoutX="39.0" layoutY="80.0" prefHeight="18.0" prefWidth="57.0" text="Email">
                     <font>
                         <Font name="Verdana" size="15.0" />
                     </font>
                 </Label>
-                <TextField fx:id="emailField" layoutX="112.0" layoutY="116.0" prefHeight="26.0" prefWidth="238.0" />
-                <Button alignment="CENTER" layoutX="287.0" layoutY="298.0" mnemonicParsing="false" onAction="#login" style="-fx-background-color: #EC8305;" text="Delete Account" textFill="WHITE">
+                <TextField fx:id="emailField" layoutX="120.0" layoutY="75.0" prefHeight="26.0" prefWidth="188.0" />
+
+                <Label fx:id="usernameLabel" layoutX="39.0" layoutY="130.0" prefHeight="19.0" prefWidth="81.0" text="Username">
+                    <font>
+                        <Font name="Verdana" size="15.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="usernameField" layoutX="120.0" layoutY="125.0" prefHeight="26.0" prefWidth="188.0" />
+
+                <Label fx:id="contactNumberLabel" layoutX="39.0" layoutY="180.0" prefHeight="19.0" prefWidth="134.0" text="Contact Number">
+                    <font>
+                        <Font name="Verdana" size="15.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="contactNumberField" layoutX="180.0" layoutY="175.0" prefHeight="26.0" prefWidth="188.0" />
+
+                <Label fx:id="addressLabel" layoutX="39.0" layoutY="230.0" prefHeight="19.0" prefWidth="67.0" text="Address">
+                    <font>
+                        <Font name="Verdana" size="15.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="addressField" layoutX="120.0" layoutY="225.0" prefHeight="26.0" prefWidth="188.0" />
+
+                <Button alignment="CENTER" layoutX="287.0" layoutY="298.0" mnemonicParsing="false" style="-fx-background-color: #EC8305;" text="Delete Account" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="12.0" />
                     </font>
                 </Button>
-                <Button alignment="CENTER" layoutX="134.0" layoutY="298.0" mnemonicParsing="false" onAction="#switchToSignup" style="-fx-background-color: #EC8305;" text="Edit Profile" textFill="WHITE">
+                <Button alignment="CENTER" layoutX="134.0" layoutY="298.0" mnemonicParsing="false" onAction="#handleUpdateProfile" style="-fx-background-color: #EC8305;" text="Edit Profile" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="12.0" />
                     </font>
                 </Button>
-            <Label fx:id="usernameLabel" layoutX="39.0" layoutY="170.0" prefHeight="19.0" prefWidth="81.0" text="Username">
-               <font>
-                  <Font name="Verdana" size="15.0" />
-               </font>
-            </Label>
-            <Label fx:id="conatctnumberLabel" layoutX="39.0" layoutY="211.0" prefHeight="19.0" prefWidth="134.0" text="Contact Number">
-               <font>
-                  <Font name="Verdana" size="15.0" />
-               </font>
-            </Label>
-            <Label fx:id="addressLabel" layoutX="46.0" layoutY="249.0" prefHeight="19.0" prefWidth="67.0" text="Address">
-               <font>
-                  <Font name="Verdana" size="15.0" />
-               </font>
-            </Label>
-            <TextField fx:id="emailField1" layoutX="121.0" layoutY="166.0" prefHeight="26.0" prefWidth="188.0" />
-            <TextField fx:id="emailField11" layoutX="185.0" layoutY="208.0" prefHeight="26.0" prefWidth="188.0" />
-            <TextField fx:id="emailField111" layoutX="119.0" layoutY="246.0" prefHeight="26.0" prefWidth="188.0" />
             </children>
         </AnchorPane>
     </right>

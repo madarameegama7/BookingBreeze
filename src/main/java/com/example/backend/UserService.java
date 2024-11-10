@@ -1,10 +1,13 @@
 package com.example.backend;
 
+import com.example.utility.UserSession;
 import com.example.models.User;
 
 import java.sql.*;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserService {
 
@@ -29,6 +32,7 @@ public class UserService {
         }
     }
 
+    // In your login method
     public int login(String email, String password) {
         String sql = "SELECT * FROM user WHERE email = ? AND password = ?";
         String hashedPassword = hashPassword(password);
@@ -47,6 +51,35 @@ public class UserService {
             e.printStackTrace();
         }
         return -1; // return -1 if login fails
+    }
+
+    public static List<User> retrieveuserDetails() {
+        String sql = "SELECT * FROM user WHERE userID = ?";
+
+
+
+        List<User> users = new ArrayList<>();
+
+        int userId = UserSession.getInstance().getUserId();
+
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, userId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                String email = resultSet.getString("email");
+                String username = resultSet.getString("username");
+                String contactNumber = resultSet.getString("contactNumber");
+                String address = resultSet.getString("address");
+
+                User user = new User(email,username,contactNumber,address);
+                users.add(user);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return users;
     }
 
     public boolean isEmailValid(String email) {

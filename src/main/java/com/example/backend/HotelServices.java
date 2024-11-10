@@ -13,6 +13,7 @@ public class HotelServices {
     // Method to register a new user in the database
     public boolean addHotel(String hotelName, String registrationNo, String location, String contactNum, String facilities, byte[] hotelImages) {
         int userID = HotelSession.getInstance().getUserId();
+      
         String sql = "INSERT INTO hotel (userID, hotelName, registrationNo, location, contactNum, facilities, hotelImages  ) VALUES (?, ?, ?, ?, ?, ?,?)";
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
