@@ -1,8 +1,7 @@
 package com.example.backend;
 
 import com.example.models.Hotel;
-import com.example.models.Session;
-import com.example.models.User;
+import com.example.utility.HotelSession;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -13,7 +12,7 @@ public class HotelServices {
 
     // Method to register a new user in the database
     public boolean addHotel(String hotelName, String registrationNo, String location, String contactNum, String facilities, byte[] hotelImages) {
-        int userID = Session.getInstance().getUserId();
+        int userID = HotelSession.getInstance().getUserId();
         String sql = "INSERT INTO hotel (userID, hotelName, registrationNo, location, contactNum, facilities, hotelImages  ) VALUES (?, ?, ?, ?, ?, ?,?)";
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
