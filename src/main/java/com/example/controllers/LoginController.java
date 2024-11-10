@@ -50,6 +50,7 @@ public class LoginController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
         } else {
             showAlert("Invalid email or password.");
         }

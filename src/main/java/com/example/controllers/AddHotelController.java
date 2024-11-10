@@ -2,6 +2,7 @@ package com.example.controllers;
 
 import com.example.backend.HotelServices;
 import com.example.models.Hotel;
+import com.example.utility.HotelSession;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -74,7 +75,7 @@ public class AddHotelController {
 
     @FXML
     public void handleRegisterButtonClick() {
-        int userID = Integer.parseInt(userIDField.getText());
+        int userID = HotelSession.getInstance().getUserId();
         String hotelName = hotelNameField.getText();
         String registrationNo = registrationNoField.getText();
         String location = locationField.getText();
@@ -86,7 +87,7 @@ public class AddHotelController {
 
         // Call the HotelServices to add the hotel
         HotelServices hotelServices = new HotelServices();
-        boolean isAdded = hotelServices.addHotel(userID, hotelName, registrationNo, location, contactNum, facilities, hotelImages);
+        boolean isAdded = hotelServices.addHotel(hotelName, registrationNo, location, contactNum, facilities, hotelImages);
 
         if (isAdded) {
             statusMessageLabel.setText("Hotel registered successfully!"); // Success message
