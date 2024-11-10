@@ -1,16 +1,16 @@
-package com.example.models;
+package com.example.utility;
 
-public class Session {
+public class HotelSession {
 
-        private static Session instance;
+        private static HotelSession instance;
         private int userId;
 
 
-        private Session() {}
+        private HotelSession() {}
 
-        public static Session getInstance() {
+        public static HotelSession getInstance() {
             if (instance == null) {
-                instance = new Session();
+                instance = new HotelSession();
             }
             return instance;
         }

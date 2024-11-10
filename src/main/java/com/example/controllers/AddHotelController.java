@@ -2,7 +2,7 @@ package com.example.controllers;
 
 import com.example.backend.HotelServices;
 import com.example.models.Hotel;
-import com.example.models.Session;
+import com.example.utility.HotelSession;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -75,7 +75,7 @@ public class AddHotelController {
 
     @FXML
     public void handleRegisterButtonClick() {
-        int userID = Session.getInstance().getUserId();
+        int userID = HotelSession.getInstance().getUserId();
         String hotelName = hotelNameField.getText();
         String registrationNo = registrationNoField.getText();
         String location = locationField.getText();
