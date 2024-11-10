@@ -1,19 +1,31 @@
 package com.example.models;
 
 public class User {
+    private String email;
     private String username;
-    private String password;
+    private String contactNumber;
+    private String address;
 
-    public User(String username, String password) {
+    public User(String email, String username, String contactNumber, String address) {
+        this.email = email;
         this.username = username;
-        this.password = password;
+        this.contactNumber = contactNumber;
+        this.address = address;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     public String getUsername() {
         return username;
     }
 
-    public String getPassword() {
-        return password;
+    public String getContactNumber() {
+        return contactNumber;
+    }
+
+    public String getAddress() {
+        return address;
     }
 }
