@@ -1,32 +1,27 @@
 package com.example.backend;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import com.example.models.User;
+
+import java.sql.*;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class UserService {
 
-    // Method to register a new user with hashed password and additional fields
     public boolean signup(String email, String username, String password, String contactNumber, String address) {
-        if (!isEmailValid(email) || !isPasswordValid(password)) {
-            return false;  // Fail if validation fails
-        }
-
-        //String hashedPassword = hashPassword(password);
-        String sql = "INSERT INTO user (email, userName, password, contactNumber, address) VALUES (?, ?, ?, ?, ?)";
+        String hashedPassword = hashPassword(password);
+        String sql = "INSERT INTO user (email, username, password, contact_number, address) VALUES (?, ?, ?, ?, ?)";
 
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
             preparedStatement.setString(1, email);
             preparedStatement.setString(2, username);
-            preparedStatement.setString(3, password);
+            preparedStatement.setString(3, hashedPassword);
             preparedStatement.setString(4, contactNumber);
             preparedStatement.setString(5, address);
-
-            int result = preparedStatement.executeUpdate();
-            return result > 0;
+            preparedStatement.executeUpdate();
+            return true;
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -34,40 +29,44 @@ public class UserService {
         }
     }
 
-    // Method to validate email format
+    public boolean login(String email, String password) {
+        String sql = "SELECT * FROM user WHERE email = ? AND password = ?";
+        String hashedPassword = hashPassword(password);
+
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            preparedStatement.setString(1, email);
+            preparedStatement.setString(2, hashedPassword);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            return resultSet.next();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
     public boolean isEmailValid(String email) {
         return email.contains("@") && email.endsWith(".com");
     }
 
-    // Method to validate password length
     public boolean isPasswordValid(String password) {
         return password.length() >= 8;
     }
 
-    // Method to check if user credentials are valid (with hashed password)
-    public boolean login(String email, String password) {
-        String sql = "SELECT * FROM user WHERE email = ? AND password = ?";
-        try (Connection connection = DatabaseConnection.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-
-            //String hashedPassword = hashPassword(password); // Hash input password
-            System.out.println("Logging in with email: " + email + " and hashed password: " + password);
-            preparedStatement.setString(1, email);
-            preparedStatement.setString(2, password);
-
-            ResultSet resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()) {
-                System.out.println("Login successful for user: " + email);
-                return true;
-            } else {
-                System.out.println("Login failed: No matching user found for email " + email);
-                return false;
+    private String hashPassword(String password) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            byte[] hashedBytes = md.digest(password.getBytes());
+            StringBuilder sb = new StringBuilder();
+            for (byte b : hashedBytes) {
+                sb.append(String.format("%02x", b));
             }
-
-        } catch (SQLException e) {
+            return sb.toString();
+        } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
-            return false;
+            return null;
         }
     }
-
 }

@@ -11,6 +11,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+
 import java.io.IOException;
 
 public class LoginController {
@@ -20,49 +21,46 @@ public class LoginController {
     @FXML
     private PasswordField passwordField;
 
-    private UserService userService = new UserService();
+    private final UserService userService = new UserService();
 
     @FXML
-    public void login(ActionEvent actionEvent) {
-        String email = emailField.getText();
-        String password = passwordField.getText();
+    public void login(ActionEvent event) {
+        String email = emailField.getText().trim();
+        String password = passwordField.getText().trim();
+
+        if (email.isEmpty() || password.isEmpty()) {
+            showAlert("Please fill in all fields.");
+            return;
+        }
 
         if (userService.login(email, password)) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fxml/userdashboard.fxml"));
                 Parent root = loader.load();
-
-                DashboardController dashboardController = loader.getController();
-                //dashboardController.setUserEmail(email);
-
-                Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.setScene(new Scene(root));
                 stage.show();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         } else {
-            showAlert("Login failed. Please check your email and password.");
+            showAlert("Invalid email or password.");
         }
     }
 
+    @FXML
+    private void switchToSignup(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/com/example/fxml/signup.fxml"));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
     private void showAlert(String message) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Login Error");
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Login Information");
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
-    }
-    @FXML
-    private void switchToSignup(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fxml/signup.fxml"));
-            Parent root = loader.load();
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }

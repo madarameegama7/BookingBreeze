@@ -13,7 +13,7 @@ import java.util.List;
 public class FeedbackServices {
 
     public static List<Feedback> viewFeedback() {
-        String sql = "SELECT userID, feedbackID, username, feedback, userEmail FROM feedback";
+        String sql = "SELECT userID, username, email, feedback FROM feedback";
         List<Feedback> feedbacks = new ArrayList<>();
 
         try (Connection connection = DatabaseConnection.getConnection();
@@ -22,12 +22,12 @@ public class FeedbackServices {
 
             while (resultSet.next()) {
                 int userID = resultSet.getInt("userID");
-                int feedbackID = resultSet.getInt("feedbackID");
                 String username = resultSet.getString("username");
+                String email = resultSet.getString("email");
                 String feedback = resultSet.getString("feedback");
-                String userEmail = resultSet.getString("userEmail");
 
-                Feedback feedback1 = new Feedback(userID, feedbackID, username, feedback , userEmail);
+
+                Feedback feedback1 = new Feedback(userID, username, email , feedback);
                 feedbacks.add(feedback1);
             }
         } catch (SQLException e) {

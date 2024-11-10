@@ -2,13 +2,19 @@ package com.example.controllers;
 
 import com.example.backend.HotelServices;
 import com.example.models.Hotel;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
@@ -36,9 +42,18 @@ public class AddHotelController {
     private Button submitButton;
     @FXML
     private Label statusMessageLabel;
+    @FXML
+
 
     private byte[] hotelImages;
 
+    @FXML
+    public void backToDashboard(ActionEvent event) throws IOException{
+        Parent root = FXMLLoader.load(getClass().getResource("/com/example/fxml/viewHotel.fxml"));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
     @FXML
     public void handleUploadImageClick() {
         FileChooser fileChooser = new FileChooser();
