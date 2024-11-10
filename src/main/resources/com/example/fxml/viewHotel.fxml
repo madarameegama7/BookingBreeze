@@ -14,8 +14,8 @@
     <center>
         <TableView fx:id="hotelTableView" prefHeight="417.0" prefWidth="800.0" styleClass="hotel-table" BorderPane.alignment="CENTER">
             <columns>
-                <TableColumn fx:id="userIdColumn" prefWidth="100.0" text="User ID" />
-                <TableColumn fx:id="hotelIdColumn" prefWidth="100.0" text="Hotel ID" />
+                <TableColumn fx:id="userIdColumn" prefWidth="100.0" text="Hotel ID" />
+                <TableColumn fx:id="hotelIdColumn" prefWidth="100.0" text="User ID" />
                 <TableColumn fx:id="hotelNameColumn" prefWidth="150.0" text="Hotel Name" />
                 <TableColumn fx:id="registrationNoColumn" prefWidth="130.0" text="Registration No" />
                 <TableColumn fx:id="locationColumn" prefWidth="150.0" text="Address" />
@@ -43,8 +43,7 @@
                     </font>
                 </Label>
             <Button layoutX="14.0" layoutY="103.0" mnemonicParsing="false" onAction="#addHotels" text="Add Hotels" />
-            <Button layoutX="106.0" layoutY="103.0" mnemonicParsing="false" onAction="#editHotels" text="Edit Hotel Info" />
-            <Button layoutX="224.0" layoutY="103.0" mnemonicParsing="false" onAction="#searchHotels" text="Search Hotels" />
+            <Button layoutX="119.0" layoutY="92.0" mnemonicParsing="false" onAction="#searchHotels" text="Search Hotels" />
             <Button layoutX="131.0" layoutY="39.0" mnemonicParsing="false" onAction="#backToDashboard" prefHeight="26.0" prefWidth="102.0" style="-fx-background-color: #0470dc;" text="Back" textFill="#1a1a1b" />
             <ImageView fitHeight="23.0" fitWidth="24.0" layoutX="140.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
                <image>

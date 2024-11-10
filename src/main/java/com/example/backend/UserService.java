@@ -10,7 +10,7 @@ public class UserService {
 
     public boolean signup(String email, String username, String password, String contactNumber, String address) {
         String hashedPassword = hashPassword(password);
-        String sql = "INSERT INTO user (email, username, password, contact_number, address) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO user (email, username, password, contactNumber, address) VALUES (?, ?, ?, ?, ?)";
 
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -29,7 +29,7 @@ public class UserService {
         }
     }
 
-    public boolean login(String email, String password) {
+    public int login(String email, String password) {
         String sql = "SELECT * FROM user WHERE email = ? AND password = ?";
         String hashedPassword = hashPassword(password);
 
@@ -39,12 +39,14 @@ public class UserService {
             preparedStatement.setString(1, email);
             preparedStatement.setString(2, hashedPassword);
             ResultSet resultSet = preparedStatement.executeQuery();
-            return resultSet.next();
+            if (resultSet.next()) {
+                return resultSet.getInt("userID");  // return the user ID if login is successful
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
         }
+        return -1; // return -1 if login fails
     }
 
     public boolean isEmailValid(String email) {
