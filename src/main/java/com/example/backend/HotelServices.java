@@ -11,7 +11,7 @@ public class HotelServices {
 
     // Method to register a new user in the database
     public boolean addHotel(int userID, String hotelName, String registrationNo, String location, String contactNum, String facilities, byte[] hotelImages) {
-        String sql = "INSERT INTO hotels (userID, hotelName, registrationNo, location, contactNum, facilities, hotelImages  ) VALUES (?, ?, ?, ?, ?, ?,?)";
+        String sql = "INSERT INTO hotel (userID, hotelName, registrationNo, location, contactNum, facilities, hotelImages  ) VALUES (?, ?, ?, ?, ?, ?,?)";
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
