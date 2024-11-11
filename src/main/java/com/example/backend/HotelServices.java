@@ -1,7 +1,7 @@
 package com.example.backend;
 
 import com.example.models.Hotel;
-import com.example.models.User;
+import com.example.utility.HotelSession;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -9,9 +9,12 @@ import java.util.List;
 
 public class HotelServices {
 
+
     // Method to register a new user in the database
-    public boolean addHotel(int userID, String hotelName, String registrationNo, String location, String contactNum, String facilities, byte[] hotelImages) {
-        String sql = "INSERT INTO hotels (userID, hotelName, registrationNo, location, contactNum, facilities, hotelImages  ) VALUES (?, ?, ?, ?, ?, ?,?)";
+    public boolean addHotel(String hotelName, String registrationNo, String location, String contactNum, String facilities, byte[] hotelImages) {
+        int userID = HotelSession.getInstance().getUserId();
+      
+        String sql = "INSERT INTO hotel (userID, hotelName, registrationNo, location, contactNum, facilities, hotelImages  ) VALUES (?, ?, ?, ?, ?, ?,?)";
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
@@ -33,7 +36,7 @@ public class HotelServices {
     }
 
     public static List<Hotel> viewHotels() {
-        String sql = "SELECT userID, hotelID, hotelName, registrationNo, location, contactNum, facilities, hotelImages FROM hotels";
+        String sql = "SELECT userID, hotelID, hotelName, registrationNo, location, contactNum, facilities, hotelImages FROM hotel";
         List<Hotel> hotels = new ArrayList<>();
 
         try (Connection connection = DatabaseConnection.getConnection();
@@ -60,7 +63,7 @@ public class HotelServices {
     }
 
     public static List<Hotel> retrieveHotelDetails(String hotelName) {
-        String sql = "SELECT * FROM hotels WHERE hotelName LIKE ?";
+        String sql = "SELECT * FROM hotel WHERE hotelName LIKE ?";
 
         List<Hotel> hotels = new ArrayList<>();
 
@@ -90,7 +93,7 @@ public class HotelServices {
 
 
         public static boolean deleteHotelByName(String hotelName) {
-            String sql = "DELETE FROM hotels WHERE hotelName LIKE ?";
+            String sql = "DELETE FROM hotel WHERE hotelName LIKE ?";
             try (Connection connection = DatabaseConnection.getConnection();
                  PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
                 preparedStatement.setString(1, "%" + hotelName + "%");
@@ -103,7 +106,7 @@ public class HotelServices {
         }
 
         public static boolean updateHotelDetails(Hotel hotel) {
-            String sql = "UPDATE hotels SET hotelName = ?, registrationNo = ?, location = ?, contactNum = ?, facilities = ?, hotelImages = ? WHERE hotelId = ?";
+            String sql = "UPDATE hotel SET hotelName = ?, registrationNo = ?, location = ?, contactNum = ?, facilities = ?, hotelImages = ? WHERE hotelId = ?";
             try (Connection connection = DatabaseConnection.getConnection();
                  PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
                 preparedStatement.setString(1, hotel.getHotelName());

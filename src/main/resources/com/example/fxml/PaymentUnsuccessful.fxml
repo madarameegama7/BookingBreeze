@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" >
+   <children>
+      <Line endX="58.0" endY="-1.52587890625E-5" layoutX="301.0" layoutY="97.0" startX="-67.99998474121094" startY="-1.52587890625E-5" stroke="#d1cece" />
+      <Circle fill="#24c494" layoutX="233.0" layoutY="97.0" radius="16.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+      <Circle fill="#24c494" layoutX="300.0" layoutY="97.0" radius="16.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+      <Circle fill="#f72e20" layoutX="359.0" layoutY="97.0" radius="16.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+      <Text layoutX="248.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Booking">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Text>
+      <Text fill="#2b0be1" layoutX="307.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Breeze">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Text>
+      <Line endX="300.0" endY="-1.1444091796875E-5" layoutX="300.0" layoutY="49.0" startX="-300.0" startY="-1.1444091796875E-5" stroke="#d4d2d2" />
+      <Text fill="#100389" layoutX="211.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Oops! Payment Unsuccessful">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Text>
+      <Hyperlink layoutX="272.0" layoutY="173.0" text="Go Back" textFill="#999797" />
+   </children>
+</AnchorPane>

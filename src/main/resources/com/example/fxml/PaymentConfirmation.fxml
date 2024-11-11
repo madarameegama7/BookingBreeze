@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controllers.PaymentConfirmationController">
+   <children>
+      <Line endX="78.0" endY="7.62939453125E-6" layoutX="310.0" layoutY="64.0" startX="-70.00001525878906" startY="7.62939453125E-6" stroke="#d1cece" />
+      <Circle fill="#24c494" layoutX="242.0" layoutY="64.0" radius="16.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+      <Circle fill="#24c494" layoutX="319.0" layoutY="65.0" radius="16.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+      <Circle fill="#24c494" layoutX="398.0" layoutY="64.0" radius="16.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+      <Text fill="#152adf" layoutX="313.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Breeze ">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Text>
+      <Line endX="535.5" endY="7.62939453125E-6" layoutX="101.0" layoutY="38.0" startX="-100.0" stroke="#c1bcbc" />
+      <Text layoutX="284.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Text fill="#100389" layoutX="233.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Yay ! Payment completed ">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Text>
+      <Text fill="#2788ef" layoutX="111.0" layoutY="326.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please check your email &amp; phone Message.We have sent all the Information " />
+      <Text fill="#666464" layoutX="282.0" layoutY="279.0" strokeType="OUTSIDE" strokeWidth="0.0">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Text>
+      <Hyperlink layoutX="278.0" layoutY="348.0" text="Go to Dashboard" textFill="#acaaaa">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Hyperlink>
+      <Text layoutX="281.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Payment Details">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Text>
+      <Text layoutX="72.0" layoutY="216.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User ID" />
+      <Text layoutX="72.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reservation ID" />
+      <Text layoutX="67.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Payment ID" />
+      <Text layoutX="323.0" layoutY="256.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Amount" />
+      <Text layoutX="319.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Payment Type" />
+      <Text layoutX="323.0" layoutY="216.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Payment Date" />
+      <TextField fx:id="userID" layoutX="161.0" layoutY="196.0" prefHeight="26.0" prefWidth="92.0" style="-fx-background-color: #ffffff;" />
+      <TextField fx:id="reservationID" layoutX="160.0" layoutY="237.0" prefHeight="26.0" prefWidth="92.0" style="-fx-background-color: #ffffff;" />
+      <TextField fx:id="paymentIDField" layoutX="159.0" layoutY="152.0" prefHeight="26.0" prefWidth="92.0" style="-fx-background-color: #ffffff;" />
+      <TextField fx:id="paymentType" layoutX="411.0" layoutY="161.0" style="-fx-background-color: #ffffff;" />
+      <TextField fx:id="paymentDate" layoutX="415.0" layoutY="199.0" style="-fx-background-color: #ffffff;" />
+      <TextField fx:id="amount" layoutX="414.0" layoutY="237.0" style="-fx-background-color: #ffffff;" />
+      <Text layoutX="260.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Booking ">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>
