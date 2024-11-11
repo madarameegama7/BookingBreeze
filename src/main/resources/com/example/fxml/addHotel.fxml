@@ -3,69 +3,71 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controllers.AddHotelController">
    <children>
       <!-- Title Section -->
-      <Label layoutX="206.0" layoutY="26.0" style="-fx-font-weight: bold;" text="Booking" textFill="#091726">
+      <Label layoutX="275.0" layoutY="8.0" style="-fx-font-weight: bold;" text="Booking" textFill="#091726">
          <font>
             <Font name="Arial" size="22.0" />
          </font>
       </Label>
-      <Label layoutX="211.0" layoutY="79.0" text="Register Your Hotel" textFill="#333333">
+      <Label layoutX="292.0" layoutY="52.0" text="Register Your Hotel" textFill="#333333">
          <font>
-            <Font name="Arial" size="18.0" />
+            <Font name="System Bold" size="14.0" />
          </font>
       </Label>
 
       <!-- Hotel Name -->
-      <Label layoutX="55.0" layoutY="122.0" text="Hotel Name" textFill="#666666" />
-      <TextField fx:id="hotelNameField" layoutX="55.0" layoutY="142.0" prefWidth="220.0" promptText="Full Name" style="-fx-background-radius: 8;" />
+      <Label layoutX="118.0" layoutY="122.0" text="Hotel Name" textFill="#666666" />
+      <TextField fx:id="hotelNameField" layoutX="118.0" layoutY="146.0" prefWidth="220.0" promptText="Full Name" style="-fx-background-radius: 8;" />
 
       <!-- Registration Number -->
-      <Label layoutX="55.0" layoutY="182.0" text="Registration No" textFill="#666666" />
-      <TextField fx:id="registrationNoField" layoutX="55.0" layoutY="202.0" prefWidth="220.0" promptText="Pvt Ltd" style="-fx-background-radius: 8;" />
+      <Label layoutX="118.0" layoutY="186.0" text="Registration No" textFill="#666666" />
+      <TextField fx:id="registrationNoField" layoutX="118.0" layoutY="206.0" prefWidth="220.0" promptText="Pvt Ltd" style="-fx-background-radius: 8;" />
 
       <!-- Address -->
-      <Label layoutX="55.0" layoutY="242.0" text="Address" textFill="#666666" />
-      <TextField fx:id="locationField" layoutX="55.0" layoutY="262.0" prefWidth="220.0" promptText="Location" style="-fx-background-radius: 8;" />
+      <Label layoutX="118.0" layoutY="241.0" text="Address" textFill="#666666" />
+      <TextField fx:id="locationField" layoutX="118.0" layoutY="262.0" prefWidth="220.0" promptText="Location" style="-fx-background-radius: 8;" />
 
       <!-- Contact Number -->
-      <Label layoutX="55.0" layoutY="302.0" text="Contact No" textFill="#666666" />
-      <TextField fx:id="contactNumField" layoutX="55.0" layoutY="322.0" prefWidth="220.0" promptText="Contact Number" style="-fx-background-radius: 8;" />
+      <Label layoutX="118.0" layoutY="301.0" text="Contact No" textFill="#666666" />
+      <TextField fx:id="contactNumField" layoutX="118.0" layoutY="322.0" prefWidth="220.0" promptText="Contact Number" style="-fx-background-radius: 8;" />
 
       <!-- Facilities -->
-      <Label layoutX="55.0" layoutY="368.0" text="Facilities" textFill="#666666" />
-      <TextField fx:id="facilitiesField" layoutX="55.0" layoutY="388.0" prefWidth="220.0" promptText="Describe" style="-fx-background-radius: 8;" />
+      <Label layoutX="118.0" layoutY="355.0" text="Facilities" textFill="#666666" />
+      <TextField fx:id="facilitiesField" layoutX="118.0" layoutY="378.0" prefWidth="220.0" promptText="Describe" style="-fx-background-radius: 8;" />
 
       <!-- Upload Image Section -->
-      <Label layoutX="361.0" layoutY="171.0" text="Upload Images" textFill="#666666" />
-      <ImageView fx:id="hotelImageView" fitHeight="120.0" fitWidth="220.0" layoutX="361.0" layoutY="191.0" style="-fx-border-color: #cccccc; -fx-border-radius: 8;" />
-      <Button fx:id="uploadImageButton" layoutX="350.0" layoutY="303.0" onAction="#handleUploadImageClick" style="-fx-background-color: #0073e6; -fx-background-radius: 8;" text="Upload Image" textFill="#ffffff" />
+      <Label layoutX="399.0" layoutY="122.0" text="Upload Images" textFill="#666666" />
+      <ImageView fx:id="hotelImageView" fitHeight="120.0" fitWidth="220.0" layoutX="399.0" layoutY="149.0" style="-fx-border-color: #b6b6b6; -fx-border-radius: 2;" />
+      <Button fx:id="uploadImageButton" layoutX="398.0" layoutY="275.0" onAction="#handleUploadImageClick" style="-fx-background-color: #b6b6b6; -fx-background-radius: 2;" text="Upload Image" textFill="#ffffff">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
 
       <!-- Register Button -->
-      <Button fx:id="submitButton" layoutX="252.0" layoutY="442.0" onAction="#handleRegisterButtonClick" style="-fx-background-color: #0073e6; -fx-background-radius: 8;" text="Register" textFill="#ffffff">
+      <Button fx:id="submitButton" layoutX="264.0" layoutY="442.0" onAction="#handleRegisterButtonClick" prefHeight="26.0" prefWidth="73.0" style="-fx-background-color: #05e93f; -fx-background-radius: 2;" text="Register" textFill="#ffffff">
          <font>
-            <Font name="Arial" size="15.0" />
+            <Font name="System Bold" size="12.0" />
          </font>
       </Button>
 
       <!-- Status Message Label -->
       <Label fx:id="statusMessageLabel" layoutX="50.0" layoutY="470.0" style="-fx-font-size: 12px;" textFill="#ff0000" />
-      <Label layoutX="300.0" layoutY="26.0" style="-fx-font-weight: bold;" text="Breeze" textFill="#0073e6">
+      <Label layoutX="366.0" layoutY="9.0" style="-fx-font-weight: bold;" text="Breeze" textFill="#0073e6">
          <font>
             <Font name="Arial" size="22.0" />
          </font>
       </Label>
-      <Button layoutX="77.0" layoutY="67.0" mnemonicParsing="false" onAction="#backToDashboard" prefHeight="26.0" prefWidth="88.0" style="-fx-background-color: #0073e6;" text="Back" textFill="#121213" />
-      <ImageView fitHeight="22.0" fitWidth="29.0" layoutX="80.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../images/icons8-back-64.png" />
-         </image>
-      </ImageView>
+      <Button layoutX="357.0" layoutY="442.0" mnemonicParsing="false" onAction="#backToDashboard" prefHeight="26.0" prefWidth="91.0" style="-fx-background-color: #00079a; -fx-background-radius: 2; -fx-background-radius: 2;" text="Back" textAlignment="RIGHT" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <Line endX="350.00006103515625" endY="-7.62939453125E-6" layoutX="350.0" layoutY="39.0" startX="-350.0" startY="-7.62939453125E-6" stroke="#c9c6c6" />
    </children>
 </AnchorPane>

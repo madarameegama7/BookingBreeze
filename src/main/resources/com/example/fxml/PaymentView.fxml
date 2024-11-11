@@ -13,9 +13,9 @@
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controllers.PaymentViewController">
    <children>
       <TextField fx:id="CardOwnerName" layoutX="416.0" layoutY="125.0" />
-      <Label layoutX="258.0" layoutY="14.0" text="Booking">
+      <Label layoutX="226.0" layoutY="1.0" text="Booking">
          <font>
-            <Font name="System Bold" size="13.0" />
+            <Font name="System Bold" size="22.0" />
          </font>
       </Label>
       <Line endX="300.0" endY="-24.99999237060547" fill="#c1bcbc" layoutX="300.0" layoutY="66.0" startX="-300.0" startY="-24.99999237060547" stroke="#e7e3e3" strokeMiterLimit="5.0" />
@@ -44,14 +44,13 @@
             <Font size="10.0" />
          </font>
       </Text>
-      <Button fx:id="payNowButton" layoutX="236.0" layoutY="301.0" mnemonicParsing="false" onAction="#handlePayNow" prefHeight="26.0" prefWidth="123.0" style="-fx-background-color: #152adf;" text="Pay Now" textFill="WHITE">
+      <Button fx:id="payNowButton" layoutX="236.0" layoutY="301.0" mnemonicParsing="false" onAction="#handlePayNow" prefHeight="26.0" prefWidth="123.0" style="-fx-background-color: #05e93f;" text="Pay Now" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
-      <Button fx:id="cancleButton" layoutX="266.0" layoutY="342.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="63.0" text="Cancel" />
-      <Text fill="#152adf" layoutX="311.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Breeze">
+      <Text fill="#152adf" layoutX="308.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Breeze">
          <font>
-            <Font name="System Bold" size="13.0" />
+            <Font name="System Bold" size="22.0" />
          </font>
       </Text>
       <Text layoutX="43.0" layoutY="283.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Amount :" />
@@ -66,7 +65,7 @@
       <Text layoutX="39.0" layoutY="234.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Payment Status : " />
       <CheckBox fx:id="fullPaymentCheckbox" layoutX="129.0" layoutY="220.0" mnemonicParsing="false" text="Full Payment" />
       <CheckBox fx:id="initialPaymentCheckbox" layoutX="129.0" layoutY="242.0" mnemonicParsing="false" text="Initial Payment" />
-      <Button fx:id="backButton" layoutX="60.0" layoutY="57.0" mnemonicParsing="false" onAction="#goBack" prefHeight="26.0" prefWidth="123.0" style="-fx-background-color: #152adf;" text="Back" textFill="WHITE">
+      <Button fx:id="backButton" layoutX="258.0" layoutY="339.0" mnemonicParsing="false" onAction="#goBack" prefHeight="26.0" prefWidth="79.0" style="-fx-background-color: #152adf;" text="Back" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>

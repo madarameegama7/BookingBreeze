@@ -5,66 +5,62 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controllers.SaveProfileController">
-    <left>
-        <AnchorPane prefHeight="500.0" prefWidth="223.0" style="-fx-background-color: #000B58;" BorderPane.alignment="CENTER">
+   <center>
+        <AnchorPane prefHeight="500.0" prefWidth="758.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
             <children>
-                <Label alignment="CENTER" layoutY="159.0" prefHeight="26.0" prefWidth="144.0" text="Booking" textFill="#1b1a1a">
+                <Label alignment="CENTER" layoutX="222.0" layoutY="66.0" prefHeight="18.0" prefWidth="292.0" text="Edit Profile Information" textFill="#101010">
                     <font>
-                        <Font name="Verdana Bold" size="20.0" />
+                        <Font name="System Bold" size="14.0" />
                     </font>
                 </Label>
-                <Label alignment="CENTER" layoutX="114.0" layoutY="159.0" prefHeight="26.0" prefWidth="86.0" text="Breeze" textFill="#efeaea">
-                    <font>
-                        <Font name="Verdana Bold" size="20.0" />
-                    </font>
+                <Label fx:id="emailLabel" layoutX="197.0" layoutY="138.0" prefHeight="18.0" prefWidth="57.0" text="Email">
+               <font>
+                  <Font size="14.0" />
+               </font>
                 </Label>
-            </children>
-        </AnchorPane>
-    </left>
-    <right>
-        <AnchorPane prefHeight="478.0" prefWidth="462.0" BorderPane.alignment="CENTER">
-            <children>
-                <Label alignment="CENTER" layoutX="49.0" layoutY="33.0" prefHeight="18.0" prefWidth="292.0" text="Save Profile" textFill="#ec8305">
-                    <font>
-                        <Font name="Verdana Bold" size="22.0" />
-                    </font>
-                </Label>
-                <Label fx:id="emailLabel" layoutX="39.0" layoutY="80.0" prefHeight="18.0" prefWidth="57.0" text="Email">
-                    <font>
-                        <Font name="Verdana" size="15.0" />
-                    </font>
-                </Label>
-                <TextField fx:id="emailField" layoutX="120.0" layoutY="75.0" prefHeight="26.0" prefWidth="188.0" />
+                <TextField fx:id="emailField" layoutX="337.0" layoutY="134.0" prefHeight="26.0" prefWidth="188.0" />
 
-                <Label fx:id="usernameLabel" layoutX="39.0" layoutY="130.0" prefHeight="19.0" prefWidth="81.0" text="Username">
-                    <font>
-                        <Font name="Verdana" size="15.0" />
-                    </font>
+                <Label fx:id="usernameLabel" layoutX="197.0" layoutY="188.0" prefHeight="19.0" prefWidth="81.0" text="Username">
+               <font>
+                  <Font size="14.0" />
+               </font>
                 </Label>
-                <TextField fx:id="usernameField" layoutX="120.0" layoutY="125.0" prefHeight="26.0" prefWidth="188.0" />
+                <TextField fx:id="usernameField" layoutX="338.0" layoutY="184.0" prefHeight="26.0" prefWidth="188.0" />
 
-                <Label fx:id="contactNumberLabel" layoutX="39.0" layoutY="180.0" prefHeight="19.0" prefWidth="134.0" text="Contact Number">
-                    <font>
-                        <Font name="Verdana" size="15.0" />
-                    </font>
+                <Label fx:id="contactNumberLabel" layoutX="197.0" layoutY="238.0" prefHeight="19.0" prefWidth="134.0" text="Contact Number">
+               <font>
+                  <Font size="14.0" />
+               </font>
                 </Label>
-                <TextField fx:id="contactNumberField" layoutX="180.0" layoutY="175.0" prefHeight="26.0" prefWidth="188.0" />
+                <TextField fx:id="contactNumberField" layoutX="338.0" layoutY="233.0" prefHeight="26.0" prefWidth="188.0" />
 
-                <Label fx:id="addressLabel" layoutX="39.0" layoutY="230.0" prefHeight="19.0" prefWidth="67.0" text="Address">
-                    <font>
-                        <Font name="Verdana" size="15.0" />
-                    </font>
+                <Label fx:id="addressLabel" layoutX="197.0" layoutY="288.0" prefHeight="19.0" prefWidth="67.0" text="Address">
+               <font>
+                  <Font size="14.0" />
+               </font>
                 </Label>
-                <TextField fx:id="addressField" layoutX="120.0" layoutY="225.0" prefHeight="26.0" prefWidth="188.0" />
-                <Button alignment="CENTER" layoutX="174.0" layoutY="297.0" mnemonicParsing="false" onAction="#handleSaveProfile" style="-fx-background-color: #EC8305;" text="Save Profile" textFill="WHITE">
+                <TextField fx:id="addressField" layoutX="338.0" layoutY="284.0" prefHeight="26.0" prefWidth="188.0" />
+                <Button alignment="CENTER" layoutX="332.0" layoutY="355.0" mnemonicParsing="false" onAction="#handleSaveProfile" style="-fx-background-color: #05e93f;" text="Save Profile" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="12.0" />
                     </font>
                 </Button>
+                <Label alignment="CENTER" layoutX="368.0" layoutY="12.0" prefHeight="26.0" prefWidth="86.0" text="Breeze" textFill="#2107c7">
+                    <font>
+                        <Font name="Verdana Bold" size="20.0" />
+                    </font>
+                </Label>
+                <Label alignment="CENTER" layoutX="249.0" layoutY="10.0" prefHeight="26.0" prefWidth="144.0" text="Booking" textFill="#1b1a1a">
+                    <font>
+                        <Font name="Verdana Bold" size="20.0" />
+                    </font>
+                </Label>
+            <Line endX="327.60003662109375" endY="-7.62939453125E-6" layoutX="374.0" layoutY="48.0" startX="-374.0" startY="-7.62939453125E-6" stroke="#bcb4b4" />
             </children>
         </AnchorPane>
-    </right>
+   </center>
 </BorderPane>
