@@ -77,38 +77,34 @@ public class UserService {
             }
 
         } catch (SQLException e) {
+
             e.printStackTrace();
         }
         return null; // Return null if login fails
     }
 
-    public static List<User> retrieveuserDetails() {
+    public static User getUserById(int userId) {
         String sql = "SELECT * FROM user WHERE userID = ?";
+        User user = null;
 
-
-
-        List<User> users = new ArrayList<>();
-
-        int userId = UserSession.getInstance().getUserId();
 
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setInt(1, userId);
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            while (resultSet.next()) {
+            if (resultSet.next()) {
                 String email = resultSet.getString("email");
                 String username = resultSet.getString("username");
                 String contactNumber = resultSet.getString("contactNumber");
                 String address = resultSet.getString("address");
 
-                User user = new User(email,username,contactNumber,address);
-                users.add(user);
+                user = new User(email, username, contactNumber, address);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return users;
+        return user;
     }
 
     public boolean isEmailValid(String email) {
@@ -133,4 +129,40 @@ public class UserService {
             return null;
         }
     }
-}
+
+        public static boolean deleteUserById(int userId) {
+            String sql = "DELETE FROM user WHERE userID = ?";
+            try (Connection connection = DatabaseConnection.getConnection();
+                 PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                preparedStatement.setInt(1, userId);
+                int rowsAffected = preparedStatement.executeUpdate();
+                return rowsAffected > 0;
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return false;
+            }
+        }
+
+        public static boolean updateUser(User user) {
+            String sql = "UPDATE user SET username = ?, email = ?, contactNumber = ?, address = ? WHERE userID = ?";
+            try (Connection connection = DatabaseConnection.getConnection();
+                 PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                preparedStatement.setString(1, user.getUsername());
+                preparedStatement.setString(2, user.getEmail());
+                preparedStatement.setString(3, user.getContactNumber());
+                preparedStatement.setString(4, user.getAddress());
+                preparedStatement.setInt(5, user.getUserID());
+
+                System.out.println("Executing update: " + preparedStatement.toString()); // Debug statement
+
+                int rowsAffected = preparedStatement.executeUpdate();
+                System.out.println("Rows affected: " + rowsAffected);
+                return rowsAffected > 0;
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return false;
+            }
+        }
+    }
+
+

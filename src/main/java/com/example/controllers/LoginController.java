@@ -88,6 +88,7 @@ package com.example.controllers;
 //}
 import com.example.backend.UserService;
 import com.example.models.UserRole;
+import com.example.utility.HotelSession;
 import com.example.utility.UserSession;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -124,6 +125,12 @@ public class LoginController {
         }
 
         UserRole role = userService.login(email, password);
+        int userId = userService.login(email, password);
+
+        if (userId != -1) {
+            HotelSession.getInstance().setUserId(userId);// If userId is valid, login successful
+            // Store the userId for later use (e.g., in a session or controller)
+            System.out.println("User ID: " + userId);
 
         if (role != null) {
             // Based on the role, load the appropriate dashboard
