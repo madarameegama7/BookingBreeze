@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import java.io.IOException;
 
-public class DashboardController {
+public class AdminDashboardController {
 
     @FXML
     private VBox profileView;
@@ -63,27 +63,8 @@ public class DashboardController {
         stage.show();
     }
     @FXML
-    private void handleviewProfile(ActionEvent event) {
-        if (currentUser != null) {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fxml/userprofile.fxml"));
-                Parent root = loader.load();
-                Stage stage = new Stage();
-                stage.setScene(new Scene(root));
-                UserProfileUpdateController controller = loader.getController();
-                controller.setUserData(currentUser);
-
-                stage.show();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-        }
-    }
-    @FXML
-    public void viewPayment(ActionEvent event) throws IOException{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fxml/PaymentView.fxml"));
-        Parent root = loader.load();
+    public void viewPaymentHistory(ActionEvent event) throws IOException{
+        Parent root = FXMLLoader.load(getClass().getResource("/com/example/fxml/viewPaymentHistory.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.show();
@@ -99,16 +80,6 @@ public class DashboardController {
     private void handleLogout(ActionEvent event) throws IOException {
         // Redirect to the login screen or close the current window
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fxml/login.fxml"));
-        Parent root = loader.load();
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.show();
-    }
-
-    @FXML
-    private void makeReservations(ActionEvent event) throws IOException {
-        // Redirect to the login screen or close the current window
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fxml/reservation.fxml"));
         Parent root = loader.load();
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));

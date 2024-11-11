@@ -28,13 +28,13 @@
       <TextField fx:id="paymentDateField" editable="false" layoutX="273.0" layoutY="178.0" />
       <Text layoutX="177.0" layoutY="239.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Payment Amount" />
       <TextField fx:id="paymentAmountField" layoutX="273.0" layoutY="219.0" />
-      <Text fill="#3409bf" layoutX="228.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Uptade Payment Status">
+      <Text fill="#3409bf" layoutX="228.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Update Payment Status">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Text>
       <Text layoutX="177.0" layoutY="280.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Payment Status" />
-      <Button fx:id="handleSave" layoutX="282.0" layoutY="313.0" mnemonicParsing="false" style="-fx-background-color: #1d0be4;" text="Save" textFill="WHITE" onAction="#handleSave">
+      <Button fx:id="handleSave" layoutX="282.0" layoutY="313.0" mnemonicParsing="false" onAction="#handleSave" style="-fx-background-color: #1d0be4;" text="Save" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>

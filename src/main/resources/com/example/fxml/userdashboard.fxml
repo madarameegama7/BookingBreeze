@@ -59,7 +59,7 @@
          </graphic>
       </Button>
 
-      <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="314.0" layoutY="218.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="154.0" style="-fx-background-color: #96C9F4;" text="Reservations">
+      <Button onAction="#makeReservations" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="314.0" layoutY="218.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="154.0" style="-fx-background-color: #96C9F4;" text="Reservations">
          <font>
             <Font name="Verdana Bold" size="12.0" />
          </font>
@@ -71,7 +71,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button onAction="#viewPayment" alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="312.0" layoutY="364.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="154.0" style="-fx-background-color: #96C9F4;" text="Payments">
+      <Button alignment="BASELINE_LEFT" graphicTextGap="15.0" layoutX="312.0" layoutY="364.0" mnemonicParsing="false" onAction="#viewPayment" prefHeight="35.0" prefWidth="154.0" style="-fx-background-color: #96C9F4;" text=" Payment">
          <font>
             <Font name="Verdana Bold" size="12.0" />
          </font>
