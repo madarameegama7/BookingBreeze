@@ -2,6 +2,7 @@ package com.example.controllers;
 
 import com.example.models.User;
 import com.example.backend.UserService;
+import com.example.utility.HotelSession;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -41,8 +42,13 @@ public class SaveProfileController {
 
         System.out.println("Updating user: " + updatedUser);
 
+
         boolean success = UserService.updateUser(updatedUser);
         if (success) {
+            if (HotelSession.getInstance().getUserId() == userId) {
+                // Update the username in the session
+                HotelSession.getInstance().setUsername(updatedUser.getUsername());
+            }
             showAlert("Profile updated successfully.");
             Stage stage = (Stage) saveProfileButton.getScene().getWindow();
             stage.close(); // Close the edit profile window
