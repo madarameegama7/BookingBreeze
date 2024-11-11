@@ -48,6 +48,7 @@ public class SearchSreservationController {
         List<Reservation> reservations = ReservationService.getReservationDetails(reservationID);
         if (!reservations.isEmpty()) {
             currentreservation = reservations.get(0);
+            System.out.println("Found reservation ID: " + currentreservation.getReservationId());
             populateFields(currentreservation);
             detailsBox.setVisible(true);
             detailsBox.setManaged(true);

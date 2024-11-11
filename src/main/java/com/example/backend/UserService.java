@@ -57,6 +57,10 @@ public class UserService {
                 HotelSession.getInstance().setUsername(username);// Store userId in session
                 UserSession.getInstance().setUserRole(role);  // Store userRole in session
 
+                System.out.println("User ID set in session: " + userId);
+                System.out.println("Username set in session: " + username);
+                System.out.println("UserRole set in session: " + role);
+
                 return role; // Return the user's role
             }
 

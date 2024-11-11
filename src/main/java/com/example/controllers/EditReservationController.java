@@ -14,6 +14,8 @@ import java.time.format.DateTimeFormatter;
 
 public class EditReservationController {
     @FXML
+    private TextField reservationIDField;
+    @FXML
     private TextField nameField;
     @FXML
     private TextField roomTypeField;
@@ -32,6 +34,9 @@ public class EditReservationController {
 
     public void setReservationData(Reservation reservation) {
         this.currentreservation = reservation;
+        reservationIDField.setText(String.valueOf(reservation.getReservationId()));
+        reservationIDField.setText(String.valueOf(reservation.getReservationId()));
+        reservationIDField.setEditable(false);
         nameField.setText(reservation.getHotelName());
         roomTypeField.setText(String.valueOf(reservation.getRoomType()));
         roomTypeField.setText(reservation.getRoomType());
@@ -47,7 +52,7 @@ public class EditReservationController {
 
     @FXML
     private void handleSave() {
-        // Setting values for the reservation
+        currentreservation.setReservationId(Integer.parseInt(reservationIDField.getText()));// Setting values for the reservation
         currentreservation.setHotelName(nameField.getText());
         currentreservation.setRoomType(roomTypeField.getText());
         currentreservation.setRoomID(Integer.parseInt(roomNumberField.getText()));  // Convert room number to int
@@ -55,16 +60,16 @@ public class EditReservationController {
         currentreservation.setDate(dateField.getValue());  // Use the DatePicker value for the date
 
         // Parsing arrival and departure times
-        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
-
-        // Ensure arrivalTimeField and departureTimeField are not empty before parsing
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm"); // Ensure arrivalTimeField and departureTimeField are not empty before parsing
         String arrivalTimeText = arrivalTimeField.getText();
         String departureTimeText = departureTimeField.getText();
-
-        LocalTime arrivalTime = null;
-        LocalTime departureTime = null;
-
-        // Call the service layer to save the updated reservation details
+        LocalTime arrivalTime = LocalTime.parse(arrivalTimeText, timeFormatter);
+        LocalTime departureTime = LocalTime.parse(departureTimeText, timeFormatter);
+        currentreservation.setArrivalTime(arrivalTime);
+        currentreservation.setDepartureTime(departureTime);
+        System.out.println("Saving reservation with ID: " + currentreservation.getReservationId());
+        System.out.println("Arrival Time: " + currentreservation.getArrivalTime());
+        System.out.println("Departure Time: " + currentreservation.getDepartureTime());
         boolean success = ReservationService.updateReservation(currentreservation);
 
         if (success) {

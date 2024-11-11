@@ -123,7 +123,27 @@ public class HotelServices {
                 return false;
             }
         }
+    public static List<String> getAllHotelNames() {
+        List<String> hotelNames = new ArrayList<>();
+        String query = "SELECT hotelName FROM hotel";
+
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+
+            while (resultSet.next()) {
+                hotelNames.add(resultSet.getString("hotelName"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Log or handle the exception as appropriate
+        }
+
+        return hotelNames;
     }
+}
+
 
 
 
