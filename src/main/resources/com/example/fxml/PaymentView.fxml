@@ -63,9 +63,13 @@
       <Text layoutX="39.0" layoutY="142.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Payment Type : " />
       <Text layoutX="39.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Payment Date : " />
       <TextField fx:id="paymentDate" layoutX="129.0" layoutY="181.0" prefHeight="26.0" prefWidth="90.0" promptText="DD/MM/YYYY" />
-      <TextField fx:id="userIDField" layoutX="39.0" layoutY="78.0" />
       <Text layoutX="39.0" layoutY="234.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Payment Status : " />
       <CheckBox fx:id="fullPaymentCheckbox" layoutX="129.0" layoutY="220.0" mnemonicParsing="false" text="Full Payment" />
       <CheckBox fx:id="initialPaymentCheckbox" layoutX="129.0" layoutY="242.0" mnemonicParsing="false" text="Initial Payment" />
+      <Button fx:id="backButton" layoutX="60.0" layoutY="57.0" mnemonicParsing="false" onAction="#goBack" prefHeight="26.0" prefWidth="123.0" style="-fx-background-color: #152adf;" text="Back" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

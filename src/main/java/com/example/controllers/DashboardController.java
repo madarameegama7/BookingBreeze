@@ -89,8 +89,10 @@ public class DashboardController {
         stage.show();
     }
     @FXML
-    public void viewFeedback(ActionEvent event) throws IOException{
-        Parent root = FXMLLoader.load(getClass().getResource("/com/example/fxml/viewFeedback.fxml"));
+    public void clickFeedback(ActionEvent event) throws IOException{
+        // Redirect to the login screen or close the current window
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fxml/addFeedback.fxml"));
+        Parent root = loader.load();
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.show();

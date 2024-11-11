@@ -12,23 +12,32 @@ import java.util.List;
 
 public class PaymentService {
 
-    public boolean processPayment(int discountID, int userID, int reservationID, double payment, String paymentType, Date paymentDate, String paymentStatus) {
+    public boolean processPayment(int userID, double payment, String paymentType, Date paymentDate, String paymentStatus) {
+        Integer reservationID = 0;
 
-        String sql = "INSERT INTO payment (discountID, userID, reservationID, payment, paymentType, paymentDate, paymentStatus) VALUES (?,?,?,?,?,?,?)";
+        // Attempt to retrieve discountID if not provided
+        try {
+            reservationID = getReservationIDByUserID(userID);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        // Insert payment record with retrieved IDs
+        String sql = "INSERT INTO payment (userID, reservationID, payment, paymentType, paymentDate, paymentStatus) VALUES (?,?,?,?,?,?)";
 
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
-            preparedStatement.setInt(1, discountID);
-            preparedStatement.setInt(2, userID);
-            preparedStatement.setInt(3, reservationID);
-            preparedStatement.setDouble(4, payment);
-            preparedStatement.setString(5, paymentType);
-            preparedStatement.setDate(6, paymentDate);
-            preparedStatement.setString(7, paymentStatus);
+            preparedStatement.setInt(1, userID);
+            preparedStatement.setInt(2, reservationID != null ? reservationID : 0); // Default to 0 if null
+            preparedStatement.setDouble(3, payment);
+            preparedStatement.setString(4, paymentType);
+            preparedStatement.setDate(5, paymentDate);
+            preparedStatement.setString(6, paymentStatus);
 
             int result = preparedStatement.executeUpdate();
-            return result > 0;  // Returns true if the user was successfully inserted
+            return result > 0;  // Returns true if the payment was successfully inserted
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -36,23 +45,7 @@ public class PaymentService {
         }
     }
 
-    public static Integer getDiscountIDByUserID(int userID) throws SQLException {
-        Integer discountID = null;
-        String query = "SELECT discountID FROM discount WHERE userID = ?"; // Adjust table and column names as needed
-
-        try (Connection conn = DatabaseConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setInt(1, userID);
-            ResultSet rs = stmt.executeQuery();
-
-            if (rs.next()) {
-                discountID = rs.getInt("discountID");
-            }
-        }
-        return discountID;
-    }
-
-    public static Integer getRiservationIDByUserID(int userID) throws SQLException {
+    public static Integer getReservationIDByUserID(int userID) throws SQLException {
         Integer reservationID = null;
         String query = "SELECT reservationID FROM reservation WHERE userID = ?"; // Adjust table and column names as needed
 
@@ -84,7 +77,7 @@ public class PaymentService {
     }
 
     public static List<Payment> viewPayments() {
-        String sql = "SELECT paymentID, discountID, reservationID, userID, paymentType, payment, paymentStatus, paymentDate FROM payment";
+        String sql = "SELECT paymentID, reservationID, userID, paymentType, payment, paymentStatus, paymentDate FROM payment";
         List<Payment> hotels = new ArrayList<>();
 
         try (Connection connection = DatabaseConnection.getConnection();
@@ -93,7 +86,6 @@ public class PaymentService {
 
             while (resultSet.next()) {
                 int paymentID = resultSet.getInt("paymentID");
-                int discountID = resultSet.getInt("discountID");
                 int reservationID = resultSet.getInt("reservationID");
                 int userID = resultSet.getInt("userID");
                 String paymentType = resultSet.getString("paymentType");
@@ -102,7 +94,7 @@ public class PaymentService {
                 String paymentStatus = resultSet.getString("paymentStatus");
 
 
-                Payment payment1 = new Payment(paymentID, discountID, userID,reservationID,payment, paymentType, paymentDate, paymentStatus);
+                Payment payment1 = new Payment(paymentID, userID,reservationID,payment, paymentType, paymentDate, paymentStatus);
                 hotels.add(payment1);
             }
         } catch (SQLException e) {
@@ -123,7 +115,6 @@ public class PaymentService {
 
             while (resultSet.next()) {
                 int PaymentID = resultSet.getInt("paymentID");
-                int discountID = resultSet.getInt("discountID");
                 int reservationID = resultSet.getInt("reservationID");
                 int userID = resultSet.getInt("userID");
                 String paymentType = resultSet.getString("paymentType");
@@ -131,7 +122,7 @@ public class PaymentService {
                 Date paymentDate = resultSet.getDate("paymentDate");
                 String paymentStatus = resultSet.getString("paymentStatus");
 
-                Payment payment2 = new Payment(paymentID, discountID, userID,reservationID,payment, paymentType, paymentDate, paymentStatus);
+                Payment payment2 = new Payment(paymentID, userID,reservationID,payment, paymentType, paymentDate, paymentStatus);
                 payment1.add(payment2);
             }
         } catch (SQLException e) {

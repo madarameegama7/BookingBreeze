@@ -5,14 +5,14 @@ public class Feedback {
         private int userID;
         private String username;
         private String feedback;
-        private String userEmail;
+        private String email;
 
         // Constructor
-        public Feedback(int userID, String username, String feedback, String userEmail) {
+        public Feedback(int userID, String username, String feedback, String email) {
             this.userID = userID;
             this.username = username;
             this.feedback = feedback;
-            this.userEmail = userEmail;
+            this.email = email;
         }
 
         // Getters and Setters
@@ -49,11 +49,11 @@ public class Feedback {
         }
 
         public String getUserEmail() {
-            return userEmail;
+            return email;
         }
 
         public void setUserEmail(String userEmail) {
-            this.userEmail = userEmail;
+            this.email = email;
         }
 
 }
