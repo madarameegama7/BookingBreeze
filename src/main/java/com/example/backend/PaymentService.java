@@ -15,7 +15,6 @@ public class PaymentService {
     public boolean processPayment(int userID, double payment, String paymentType, Date paymentDate, String paymentStatus) {
         Integer reservationID = 0;
 
-        // Attempt to retrieve discountID if not provided
         try {
             reservationID = getReservationIDByUserID(userID);
         } catch (SQLException e) {

@@ -73,6 +73,13 @@ public class ViewHotelController {
         stage.setScene(new Scene(root));
         stage.show();
     }
+    @FXML
+    public void backToAdminDashboard(ActionEvent event) throws IOException{
+        Parent root = FXMLLoader.load(getClass().getResource("/com/example/fxml/admindashboard.fxml"));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
         @FXML
         public void initialize() {
             // Set up the columns to use the properties from the Hotel model
