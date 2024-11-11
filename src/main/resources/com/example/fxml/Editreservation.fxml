@@ -5,36 +5,49 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controllers.EditReservationController">
    <children>
 
-      <Label layoutX="59.0" layoutY="71.0" text="Hotel Name" />
-      <TextField fx:id="nameField" layoutX="150.0" layoutY="67.0" />
+      <Label layoutX="167.0" layoutY="84.0" text="Hotel Name" />
+      <TextField fx:id="nameField" layoutX="258.0" layoutY="78.0" />
 
-      <Label layoutX="59.0" layoutY="114.0" text="Room Type" />
-      <TextField fx:id="roomTypeField" layoutX="150.0" layoutY="110.0" />
+      <Label layoutX="167.0" layoutY="118.0" text="Room Type" />
+      <TextField fx:id="roomTypeField" layoutX="258.0" layoutY="114.0" />
 
-      <Label layoutX="59.0" layoutY="146.0" text="Room Number" />
-      <TextField fx:id="roomNumberField" layoutX="150.0" layoutY="142.0" />
+      <Label layoutX="167.0" layoutY="153.0" text="Room Number" />
+      <TextField fx:id="roomNumberField" layoutX="258.0" layoutY="149.0" />
 
-      <Label layoutX="60.0" layoutY="184.0" text="Count" />
-      <TextField fx:id="countField" layoutX="150.0" layoutY="180.0" />
+      <Label layoutX="168.0" layoutY="191.0" text="Count" />
+      <TextField fx:id="countField" layoutX="258.0" layoutY="187.0" />
 
-      <Label layoutX="59.0" layoutY="260.0" text="Arrival Time" />
-      <TextField fx:id="arrivalTimeField" layoutX="150.0" layoutY="256.0" promptText="HH:MM" />
+      <Label layoutX="167.0" layoutY="267.0" text="Arrival Time" />
+      <TextField fx:id="arrivalTimeField" layoutX="258.0" layoutY="263.0" promptText="HH:MM" />
 
-      <Label layoutX="59.0" layoutY="297.0" text="Departure Time" />
-      <TextField fx:id="departureTimeField" layoutX="150.0" layoutY="293.0" />
+      <Label layoutX="167.0" layoutY="304.0" text="Departure Time" />
+      <TextField fx:id="departureTimeField" layoutX="258.0" layoutY="300.0" />
 
-      <Label layoutX="59.0" layoutY="225.0" text="Date" />
-      <DatePicker fx:id="dateField" layoutX="150.0" layoutY="221.0" />
+      <Label layoutX="167.0" layoutY="232.0" text="Date" />
+      <DatePicker fx:id="dateField" layoutX="258.0" layoutY="228.0" />
 
-      <Button layoutX="398.0" layoutY="343.0" mnemonicParsing="false" onAction="#handleSave" style="-fx-background-color: #faaf00;" text="Edit">
+      <Button layoutX="281.0" layoutY="342.0" mnemonicParsing="false" onAction="#handleSave" style="-fx-background-color: #05e93f;" text="Edit" textFill="WHITE">
          <font>
-            <Font size="14.0" />
+            <Font name="System Bold" size="12.0" />
          </font>
       </Button>
+      <Text layoutX="228.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Booking">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Text>
+      <Text fill="#3403bc" layoutX="319.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Breeze">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Text>
+      <Line endX="300.0" endY="-1.1444091796875E-5" layoutX="300.0" layoutY="38.0" startX="-300.0" startY="-1.1444091796875E-5" stroke="#c1bebe" />
    </children>
 </AnchorPane>

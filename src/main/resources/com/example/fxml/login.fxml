@@ -4,60 +4,54 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controllers.LoginController">
-   <left>
-      <AnchorPane prefHeight="478.0" prefWidth="226.0" style="-fx-background-color: #000B58;" BorderPane.alignment="CENTER">
+   <center>
+      <AnchorPane prefHeight="500.0" prefWidth="752.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" layoutX="-2.0" layoutY="159.0" prefHeight="26.0" prefWidth="129.0" text="Booking" textFill="#1b1a1a">
-               <font>
-                  <Font name="Verdana Bold" size="20.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" layoutX="114.0" layoutY="159.0" prefHeight="26.0" prefWidth="86.0" text="Breeze" textFill="#efeaea">
-               <font>
-                  <Font name="Verdana Bold" size="20.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
-   </left>
-   <right>
-      <AnchorPane prefHeight="478.0" prefWidth="462.0" BorderPane.alignment="CENTER">
-         <children>
-            <Label alignment="CENTER" layoutX="2.0" layoutY="51.0" prefHeight="18.0" prefWidth="292.0" text="Login" textFill="#ec8305">
+            <Label alignment="CENTER" layoutX="215.0" layoutY="50.0" prefHeight="18.0" prefWidth="292.0" text="Login" textFill="#09259e">
                <font>
                   <Font name="Verdana Bold" size="22.0" />
                </font>
             </Label>
-            <Label layoutX="49.0" layoutY="132.0" prefHeight="18.0" prefWidth="57.0" text="Email">
+            <Label layoutX="184.0" layoutY="128.0" prefHeight="18.0" prefWidth="57.0" text="Email">
                <font>
                   <Font name="Verdana" size="15.0" />
                </font>
             </Label>
-            <TextField fx:id="emailField" layoutX="131.0" layoutY="128.0" prefHeight="26.0" prefWidth="238.0" />
-            <Label layoutX="49.0" layoutY="190.0" prefHeight="19.0" prefWidth="81.0" text="Password">
+            <TextField fx:id="emailField" layoutX="299.0" layoutY="125.0" prefHeight="26.0" prefWidth="238.0" />
+            <Label layoutX="184.0" layoutY="164.0" prefHeight="19.0" prefWidth="81.0" text="Password">
                <font>
                   <Font name="Verdana" size="15.0" />
                </font>
             </Label>
-            <PasswordField fx:id="passwordField" layoutX="137.0" layoutY="187.0" />
-            <Button alignment="CENTER" layoutX="134.0" layoutY="252.0" mnemonicParsing="false" onAction="#login" style="-fx-background-color: #EC8305;" text="Login" textFill="WHITE">
+            <PasswordField fx:id="passwordField" layoutX="298.0" layoutY="161.0" />
+            <Button alignment="CENTER" layoutX="337.0" layoutY="258.0" mnemonicParsing="false" onAction="#login" style="-fx-background-color: #05e93f;" text="Login" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="212.0" layoutY="278.0" pickOnBounds="true" preserveRatio="true" />
-            <Button alignment="CENTER" layoutX="134.0" layoutY="298.0" mnemonicParsing="false" onAction="#switchToSignup" style="-fx-background-color: #EC8305;" text="Create New Account" textFill="WHITE">
+            <Button alignment="CENTER" layoutX="295.0" layoutY="294.0" mnemonicParsing="false" onAction="#switchToSignup" style="-fx-background-color: #00079a;" text="Create New Account" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
+            <Label alignment="CENTER" layoutX="361.0" layoutY="7.0" prefHeight="26.0" prefWidth="86.0" text="Breeze" textFill="#1818df">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="256.0" layoutY="9.0" prefHeight="26.0" prefWidth="129.0" text="Booking" textFill="#1b1a1a">
+               <font>
+                  <Font name="Verdana Bold" size="20.0" />
+               </font>
+            </Label>
+            <Line endX="331.800048828125" endY="-6.400001525878906" layoutX="369.0" layoutY="48.0" startX="-369.0" startY="-6.400001525878906" stroke="#999797" />
          </children>
       </AnchorPane>
-   </right>
+   </center>
 </BorderPane>

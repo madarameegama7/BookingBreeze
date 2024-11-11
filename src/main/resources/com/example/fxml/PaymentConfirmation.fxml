@@ -14,14 +14,14 @@
       <Circle fill="#24c494" layoutX="242.0" layoutY="64.0" radius="16.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
       <Circle fill="#24c494" layoutX="319.0" layoutY="65.0" radius="16.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
       <Circle fill="#24c494" layoutX="398.0" layoutY="64.0" radius="16.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-      <Text fill="#152adf" layoutX="313.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Breeze ">
+      <Text fill="#152adf" layoutX="332.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Breeze ">
          <font>
-            <Font name="System Bold" size="13.0" />
+            <Font name="System Bold" size="22.0" />
          </font>
       </Text>
       <Line endX="535.5" endY="7.62939453125E-6" layoutX="101.0" layoutY="38.0" startX="-100.0" stroke="#c1bcbc" />
       <Text layoutX="284.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-      <Text fill="#100389" layoutX="233.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Yay ! Payment completed ">
+      <Text fill="#100389" layoutX="236.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Yay ! Payment completed ">
          <font>
             <Font name="System Bold" size="14.0" />
          </font></Text>
@@ -53,9 +53,9 @@
       <TextField fx:id="paymentType" layoutX="411.0" layoutY="161.0" style="-fx-background-color: #ffffff;" />
       <TextField fx:id="paymentDate" layoutX="415.0" layoutY="199.0" style="-fx-background-color: #ffffff;" />
       <TextField fx:id="amount" layoutX="414.0" layoutY="237.0" style="-fx-background-color: #ffffff;" />
-      <Text layoutX="260.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Booking ">
+      <Text layoutX="243.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Booking ">
          <font>
-            <Font name="System Bold" size="13.0" />
+            <Font name="System Bold" size="22.0" />
          </font>
       </Text>
    </children>
