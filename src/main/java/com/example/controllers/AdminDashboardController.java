@@ -1,8 +1,6 @@
 package com.example.controllers;
 
-import com.example.backend.UserService;
 import com.example.models.User;
-import com.example.utility.HotelSession;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -14,9 +12,7 @@ import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import java.io.IOException;
 
-import static com.example.backend.UserService.getUserById;
-
-public class DashboardController {
+public class AdminDashboardController {
 
     @FXML
     private VBox profileView;
@@ -45,7 +41,6 @@ public class DashboardController {
 
         this.currentUser = user;
     }
-
     @FXML
     private Stage stage;
     private Scene scene;
@@ -61,42 +56,15 @@ public class DashboardController {
 //    }
 
     @FXML
-    public void viewHotels(ActionEvent event) throws IOException {
+    public void viewHotels(ActionEvent event) throws IOException{
         Parent root = FXMLLoader.load(getClass().getResource("/com/example/fxml/viewHotel.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.show();
     }
-
     @FXML
-    private void handleviewProfile(ActionEvent event) throws IOException {
-        int userId = HotelSession.getInstance().getUserId();
-        System.out.println("User ID from session: " + userId);
-        if (userId > 0) {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fxml/userprofile.fxml"));
-                Parent root = loader.load();
-                Stage stage = new Stage();
-                stage.setScene(new Scene(root));
-                UserProfileUpdateController controller = loader.getController();
-                controller.loadUserData(userId);
-                stage.show();
-
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } else {
-            System.out.println("Invalid User ID"); // Debug statement } } }
-        }
-    }
-
-
-
-    @FXML
-    public void viewPayment(ActionEvent event) throws IOException{
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fxml/PaymentView.fxml"));
-        Parent root = loader.load();
+    public void viewPaymentHistory(ActionEvent event) throws IOException{
+        Parent root = FXMLLoader.load(getClass().getResource("/com/example/fxml/viewPaymentHistory.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.show();
@@ -112,16 +80,6 @@ public class DashboardController {
     private void handleLogout(ActionEvent event) throws IOException {
         // Redirect to the login screen or close the current window
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fxml/login.fxml"));
-        Parent root = loader.load();
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.show();
-    }
-
-    @FXML
-    private void makeReservations(ActionEvent event) throws IOException {
-        // Redirect to the login screen or close the current window
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fxml/reservation.fxml"));
         Parent root = loader.load();
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(root));

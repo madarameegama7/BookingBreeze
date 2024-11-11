@@ -1,5 +1,6 @@
 package com.example.backend;
 
+import com.example.models.UserRole;
 import com.example.utility.UserSession;
 import com.example.models.User;
 
@@ -33,8 +34,28 @@ public class UserService {
     }
 
     // In your login method
-    public int login(String email, String password) {
-        String sql = "SELECT * FROM user WHERE email = ? AND password = ?";
+//    public int login(String email, String password) {
+//        String sql = "SELECT * FROM user WHERE email = ? AND password = ?";
+//        String hashedPassword = hashPassword(password);
+//
+//        try (Connection connection = DatabaseConnection.getConnection();
+//             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+//
+//            preparedStatement.setString(1, email);
+//            preparedStatement.setString(2, hashedPassword);
+//            ResultSet resultSet = preparedStatement.executeQuery();
+//            if (resultSet.next()) {
+//                return resultSet.getInt("userID");  // return the user ID if login is successful
+//            }
+//
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        return -1; // return -1 if login fails
+//    }
+
+    public UserRole login(String email, String password) {
+        String sql = "SELECT userID, userRole FROM user WHERE email = ? AND password = ?";
         String hashedPassword = hashPassword(password);
 
         try (Connection connection = DatabaseConnection.getConnection();
@@ -43,15 +64,23 @@ public class UserService {
             preparedStatement.setString(1, email);
             preparedStatement.setString(2, hashedPassword);
             ResultSet resultSet = preparedStatement.executeQuery();
+
             if (resultSet.next()) {
-                return resultSet.getInt("userID");  // return the user ID if login is successful
+                int userId = resultSet.getInt("userID");
+                String roleString = resultSet.getString("userRole").toUpperCase();
+                UserRole role = UserRole.valueOf(roleString);
+
+                UserSession.getInstance().setUserId(userId); // Store userId in session
+                UserSession.getInstance().setUserRole(role);  // Store userRole in session
+
+                return role; // Return the user's role
             }
 
         } catch (SQLException e) {
 
             e.printStackTrace();
         }
-        return -1; // return -1 if login fails
+        return null; // Return null if login fails
     }
 
     public static User getUserById(int userId) {

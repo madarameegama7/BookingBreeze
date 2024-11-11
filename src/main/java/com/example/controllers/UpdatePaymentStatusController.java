@@ -1,7 +1,12 @@
 package com.example.controllers;
 import com.example.backend.PaymentService;
 import com.example.models.Payment;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -17,6 +22,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import com.example.models.Payment;
+import javafx.stage.Stage;
 
 public class UpdatePaymentStatusController {
     private Payment currentPayement;
@@ -64,4 +70,11 @@ public class UpdatePaymentStatusController {
             System.out.println("Failed to update payment details.");
         }
     }
+//    @FXML
+//    public void updateStatus(ActionEvent event) throws IOException {
+//        Parent root = FXMLLoader.load(getClass().getResource("/com/example/fxml/searchPayment.fxml"));
+//        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//        stage.setScene(new Scene(root));
+//        stage.show();
+//    }
 }
