@@ -35,5 +35,69 @@ public class FeedbackServices {
         }
         return feedbacks;
     }
+    // In FeedbackServices.java
+    public static String getUsernameByUserId(int userId) {
+        String sql = "SELECT username FROM user WHERE userID = ?";
+
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            preparedStatement.setInt(1, userId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                return resultSet.getString("username");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static String getEmailByUserId(int userId) {
+        String sql = "SELECT email FROM user WHERE userID = ?";
+
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            preparedStatement.setInt(1, userId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                return resultSet.getString("email");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    // In FeedbackServices.java
+
+    public static boolean insertFeedback(int userId, String username, String email, String feedback) {
+        String sql = "INSERT INTO feedback (userID, username, email, feedback) VALUES (?, ?, ?, ?)";
+
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            // Set the values for the placeholders in the SQL query
+            preparedStatement.setInt(1, userId);
+            preparedStatement.setString(2, username);
+            preparedStatement.setString(3, email);
+            preparedStatement.setString(4, feedback);
+
+            // Execute the update (this will insert the feedback into the database)
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            // If one or more rows are affected, the insertion was successful
+            return rowsAffected > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false; // Return false if there is an issue with the insertion
+    }
+
+
 
 }

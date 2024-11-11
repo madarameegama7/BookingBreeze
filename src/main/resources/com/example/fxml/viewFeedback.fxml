@@ -17,8 +17,8 @@
             <columns>
                 <TableColumn fx:id="userIdColumn" prefWidth="83.2" text="User ID" />
                 <TableColumn fx:id="userNameColumn" prefWidth="156.0" text="User Name" />
-                <TableColumn fx:id="feedbackColumn" prefWidth="202.4" text="User Email" />
-                <TableColumn fx:id="userEmailColumn" prefWidth="129.6" text="Feedback" />
+                <TableColumn fx:id="userEmailColumn" prefWidth="202.4" text="User Email" />
+                <TableColumn fx:id="feedbackColumn" prefWidth="129.6" text="Feedback" />
             </columns>
         </TableView>
     </center>
@@ -37,17 +37,17 @@
                         <Font size="19.0" />
                     </font>
                 </Label>
-                <Label layoutX="271.0" layoutY="78.0" text="Registered Hotels">
+                <Label layoutX="300.0" layoutY="80.0" text="Feedback">
                     <font>
                         <Font name="Book Antiqua" size="18.0" />
                     </font>
                 </Label>
-            <Button layoutX="92.0" layoutY="66.0" mnemonicParsing="false" onAction="#backToDashboard" prefHeight="26.0" prefWidth="94.0" style="-fx-background-color: #2e20ae;" text="Back" />
-            <ImageView fitHeight="25.0" fitWidth="26.0" layoutX="92.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../images/icons8-back-64.png" />
-               </image>
-            </ImageView>
+                <Button layoutX="92.0" layoutY="66.0" mnemonicParsing="false" onAction="#backToDashboard" prefHeight="26.0" prefWidth="94.0" style="-fx-background-color: #2e20ae;" text="Back" />
+                <ImageView fitHeight="25.0" fitWidth="26.0" layoutX="92.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../images/icons8-back-64.png" />
+                    </image>
+                </ImageView>
             </children>
         </AnchorPane>
     </top>

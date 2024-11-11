@@ -3,6 +3,7 @@ package com.example.controllers;
 import com.example.backend.PaymentService;
 import com.example.models.Payment;
 import com.example.backend.DatabaseConnection;
+import com.example.utility.UserSession;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +17,7 @@ import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 public class PaymentViewController {
 
@@ -62,38 +64,52 @@ public class PaymentViewController {
     @FXML
     private void handlePayNow(ActionEvent event) {
         try {
+            // Validate input fields
             if (!validateFields()) {
-                navigateToUnsuccessful(event);  // Redirect to unsuccessful screen if validation fails
+                showAlert("Validation Error", "Please fill in all required fields.");
                 return;
             }
 
-            int userID = Integer.parseInt(userIDField.getText());
-            int discountID = PaymentService.getDiscountIDByUserID(userID);
-            int reservationID = PaymentService.getRiservationIDByUserID(userID);
-            int paymentID = PaymentService.getPaymentIDByreservationID(reservationID);
-            double payment = Double.parseDouble(amount.getText());
+            // Retrieve user ID
+            int userID = UserSession.getInstance().getUserId();
+
+            if(userID == -1){
+                showAlert("Session error","User is not logged in");
+            }
+
+            // Payment details
+            double paymentAmount = Double.parseDouble(amount.getText());
             String paymentType = getSelectedPaymentType();
             String paymentStatus = getSelectedPaymentStatus();
-            Date paymentDateValue = Date.valueOf(LocalDate.parse(paymentDate.getText(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+            try {
+                LocalDate parsedDate = LocalDate.parse(paymentDate.getText(), formatter);
+                Date paymentDateValue = Date.valueOf(parsedDate);
 
-            boolean paymentSuccess = paymentService.processPayment(discountID, userID, reservationID, payment, paymentType, paymentDateValue, paymentStatus);
+                // Call PaymentService to process the payment
+                boolean paymentSuccess = paymentService.processPayment(userID, paymentAmount, paymentType, paymentDateValue, paymentStatus);
 
-            if (paymentSuccess) {
-                currentPayment = new Payment( paymentID, userID, discountID, reservationID, payment, paymentType, paymentDateValue, paymentStatus);
-                navigateToConfirmation(event);
-            } else {
-                navigateToUnsuccessful(event);
+                // Navigation based on the result
+                if (paymentSuccess) {
+                    navigateToConfirmation(event);
+                } else {
+                    showAlert("Payment Error", "Payment failed. Please try again.");
+                }
+            } catch (DateTimeParseException e) {
+                showAlert("Date Format Error", "Please enter the date in MM/dd/yyyy format.");
             }
+
+
 
         } catch (Exception e) {
             e.printStackTrace();
-            showPaymentUnsuccessfulStage(event);// Show failure stage in case of any errors
+            showAlert("Error", "An unexpected error occurred. Please check your input and try again.");
         }
     }
 
+
     private boolean validateFields() {
-        if (userIDField.getText().isEmpty() ||
-                CardOwnerName.getText().isEmpty() ||
+        if (   CardOwnerName.getText().isEmpty() ||
                 CardNumber.getText().isEmpty() ||
                 expMonth.getText().isEmpty() ||
                 expYear.getText().isEmpty() ||
@@ -133,6 +149,20 @@ public class PaymentViewController {
         stage.show();
     }
 
+    @FXML
+    private void goBack(ActionEvent event) throws IOException {
+        // Load PaymentUnsuccessful.fxml
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fxml/userdashboard.fxml"));
+        Parent unsuccessfulRoot = loader.load();
+
+        // Get the current stage (window) and set the new scene
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(unsuccessfulRoot));
+        stage.show();
+    }
+
+
+    @FXML
     private void showPaymentUnsuccessfulStage(ActionEvent event) {
         try {
             navigateToUnsuccessful(event);
@@ -162,6 +192,13 @@ public class PaymentViewController {
         }
         return null;
     }
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
 
 }
 

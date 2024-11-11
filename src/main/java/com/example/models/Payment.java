@@ -5,7 +5,6 @@ import java.sql.Date;
 
 public class Payment {
     private int paymentID;
-    private int discountID;
     private int userID;
     private int reservationID;
     private double payment;
@@ -13,9 +12,8 @@ public class Payment {
     private Date paymentDate;
     private String paymentStatus;
 
-    public Payment(int paymentID, int discountID, int userID, int reservationID, double payment, String paymentType, Date paymentDate, String paymentStatus) {
+    public Payment(int paymentID, int userID, int reservationID, double payment, String paymentType, Date paymentDate, String paymentStatus) {
         this.paymentID = paymentID;
-        this.discountID = discountID;
         this.userID = userID;
         this.reservationID = reservationID;
         this.payment = payment;
@@ -32,13 +30,6 @@ public class Payment {
         this.paymentID = paymentID;
     }
 
-    public int getDiscountID() {
-        return discountID;
-    }
-
-    public void setDiscountID(int discountID) {
-        this.discountID = discountID;
-    }
 
     public int getUserID() {
         return userID;
