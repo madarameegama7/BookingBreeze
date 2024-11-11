@@ -36,5 +36,7 @@
             <Font size="14.0" />
          </font>
       </Button>
+      <Label layoutX="59.0" layoutY="31.0" text="Reservation ID" />
+      <TextField fx:id="reservationIDField" layoutX="150.0" layoutY="27.0" />
    </children>
 </AnchorPane>
