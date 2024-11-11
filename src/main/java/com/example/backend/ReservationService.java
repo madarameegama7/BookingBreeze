@@ -12,15 +12,13 @@ import java.util.List;
 
 public class ReservationService {
 
-
-    public boolean addReservation(String hotelName, String roomType, int roomID, int count, LocalDate date, LocalTime arrivalTime, LocalTime departureTime) {
-        String query = "INSERT INTO reservation ( username, hotelName, roomType, roomID, userID, count, date, arrivalTime, departureTime) " + "VALUES ( ?, ?, ?, ?, ?, ?, ?, ?,?)";
-
+    public int addReservation(String hotelName, String roomType, int roomID, int count, LocalDate date, LocalTime arrivalTime, LocalTime departureTime) {
+        String query = "INSERT INTO reservation (username, hotelName, roomType, roomID, userID, count, date, arrivalTime, departureTime) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         int userID = HotelSession.getInstance().getUserId();
         String username = HotelSession.getInstance().getUsername();
 
         try (Connection connection = DatabaseConnection.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
 
             preparedStatement.setString(1, username);
             preparedStatement.setString(2, hotelName);
@@ -29,17 +27,25 @@ public class ReservationService {
             preparedStatement.setInt(5, userID);
             preparedStatement.setInt(6, count);
             preparedStatement.setString(7, date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-            preparedStatement.setTime(8, Time.valueOf(arrivalTime));  // Arrival time
+            preparedStatement.setTime(8, Time.valueOf(arrivalTime));
             preparedStatement.setTime(9, Time.valueOf(departureTime));
 
             int rowsInserted = preparedStatement.executeUpdate();
-            return rowsInserted > 0;
-
+            if (rowsInserted > 0) {
+                try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
+                    if (generatedKeys.next()) {
+                        int reservationId = generatedKeys.getInt(1);
+                        System.out.println("Generated Reservation ID: " + reservationId);
+                        return reservationId; // Return reservation ID
+                    }
+                }
+            }
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
         }
+        return -1; // Return -1 if insertion fails
     }
+
 
 
     public static List<Reservation> getReservationDetails(int reservationID) {
@@ -54,6 +60,7 @@ public class ReservationService {
 
             while (resultSet.next()) {
                 Reservation reservation = new Reservation();
+                reservation.setReservationId(resultSet.getInt("reservationID"));
                 reservation.setHotelName(resultSet.getString("hotelName"));
                 reservation.setRoomType(resultSet.getString("roomType"));
                 reservation.setRoomID(resultSet.getInt("roomID"));
@@ -86,6 +93,8 @@ public class ReservationService {
             preparedStatement.setString(7, reservation.getDepartureTime().toString());
             preparedStatement.setInt(8, reservation.getReservationId());
 
+            System.out.println("Executing query: " + preparedStatement.toString()); // This will print the query with the parameters System.out.println("Reservation ID: "
+            System.out.println("Reservation ID: " + reservation.getReservationId());
 
             int rowsUpdated = preparedStatement.executeUpdate();
             return rowsUpdated > 0;

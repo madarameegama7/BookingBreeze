@@ -38,7 +38,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Text layoutX="228.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Booking">
+<!--       <Text layoutX="228.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Booking">
          <font>
             <Font name="System Bold" size="22.0" />
          </font>
@@ -48,6 +48,10 @@
             <Font name="System Bold" size="22.0" />
          </font>
       </Text>
-      <Line endX="300.0" endY="-1.1444091796875E-5" layoutX="300.0" layoutY="38.0" startX="-300.0" startY="-1.1444091796875E-5" stroke="#c1bebe" />
+      <Line endX="300.0" endY="-1.1444091796875E-5" layoutX="300.0" layoutY="38.0" startX="-300.0" startY="-1.1444091796875E-5" stroke="#c1bebe" /> -->
+
+      <Label layoutX="59.0" layoutY="31.0" text="Reservation ID" />
+      <TextField fx:id="reservationIDField" layoutX="150.0" layoutY="27.0" />
+
    </children>
 </AnchorPane>

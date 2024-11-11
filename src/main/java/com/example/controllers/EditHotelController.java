@@ -69,7 +69,7 @@ public class EditHotelController {
 
     @FXML
         private void handleSave() {
-        currentHotel.setHotelID(Integer.parseInt(hotelIDField.getText()));
+            currentHotel.setHotelID(Integer.parseInt(hotelIDField.getText()));
             currentHotel.setHotelName(hotelNameField.getText());
             currentHotel.setRegistrationNo(registrationNoField.getText());
             currentHotel.setLocation(locationField.getText());
