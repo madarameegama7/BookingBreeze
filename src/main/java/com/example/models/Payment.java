@@ -79,5 +79,3 @@ public class Payment {
         this.paymentStatus = paymentStatus;
     }
 }
-
-

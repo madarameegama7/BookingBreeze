@@ -44,6 +44,7 @@ import javafx.stage.Stage;
 public class MainApp extends Application {
 
     @Override
+  @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/com/example/fxml/reservationsearch.fxml"));
         primaryStage.setTitle("Login");
