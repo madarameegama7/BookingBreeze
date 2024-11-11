@@ -15,6 +15,10 @@ public class User {
         this.address = address;
     }
 
+    public User() {
+
+    }
+
     public int getUserID(){return userID;}
 
     // Getters

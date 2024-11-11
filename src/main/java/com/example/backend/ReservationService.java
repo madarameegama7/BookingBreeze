@@ -1,24 +1,23 @@
 package com.example.backend;
 
 import com.example.models.Reservation;
+import com.example.utility.HotelSession;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ReservationService {
 
-    private final DatabaseConnection dbConnection = new DatabaseConnection();
 
-    public boolean addReservation(String username, String hotelName, String roomType, String roomID, int userID, int count,
-                                  LocalDate date, String arrivalTime, String departureTime) {
-        String query = "INSERT INTO reservation (username, hotelName, roomType, roomID, userID, count, date, arrivalTime, departureTime) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    public boolean addReservation(String hotelName, String roomType, int roomID, int count, LocalDate date, LocalTime arrivalTime, LocalTime departureTime) {
+        String query = "INSERT INTO reservation ( username, hotelName, roomType, roomID, userID, count, date, arrivalTime, departureTime) " + "VALUES ( ?, ?, ?, ?, ?, ?, ?, ?,?)";
+
+        int userID = HotelSession.getInstance().getUserId();
+        String username = HotelSession.getInstance().getUsername();
 
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -26,12 +25,12 @@ public class ReservationService {
             preparedStatement.setString(1, username);
             preparedStatement.setString(2, hotelName);
             preparedStatement.setString(3, roomType);
-            preparedStatement.setString(4, roomID);
+            preparedStatement.setInt(4, roomID);
             preparedStatement.setInt(5, userID);
             preparedStatement.setInt(6, count);
             preparedStatement.setString(7, date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-            preparedStatement.setString(8, arrivalTime);
-            preparedStatement.setString(9, departureTime);
+            preparedStatement.setTime(8, Time.valueOf(arrivalTime));  // Arrival time
+            preparedStatement.setTime(9, Time.valueOf(departureTime));
 
             int rowsInserted = preparedStatement.executeUpdate();
             return rowsInserted > 0;
@@ -42,21 +41,22 @@ public class ReservationService {
         }
     }
 
-    public static List<Reservation> getReservationsByUserId(int userId) {
+
+    public static List<Reservation> getReservationDetails(int reservationID) {
         List<Reservation> reservations = new ArrayList<>();
-        String query = "SELECT * FROM reservation WHERE userID = ?";
+        String query = "SELECT * FROM reservation WHERE reservationID = ?";
 
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
 
-            statement.setInt(1, userId);
+            statement.setInt(1, reservationID);
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
                 Reservation reservation = new Reservation();
                 reservation.setHotelName(resultSet.getString("hotelName"));
                 reservation.setRoomType(resultSet.getString("roomType"));
-                reservation.setRoomID(resultSet.getString("roomID"));
+                reservation.setRoomID(resultSet.getInt("roomID"));
                 reservation.setGuestCount(resultSet.getInt("count"));
                 reservation.setDate(resultSet.getDate("date").toLocalDate());
                 reservation.setArrivalTime(resultSet.getTime("arrivalTime").toLocalTime());
@@ -71,22 +71,21 @@ public class ReservationService {
     }
 
     // Method to update an existing reservation
-    public boolean updateReservation(Reservation reservation) {
-        String query = "UPDATE reservation SET hotelName = ?, roomType = ?, roomID = ?, count = ?, date = ?, " +
-                "arrivalTime = ?, departureTime = ? WHERE userID = ? AND roomID = ?";
+    public static boolean updateReservation(Reservation reservation) {
+        String query = "UPDATE reservation SET hotelName = ?, roomType = ?, roomID = ?, count = ?, date = ?, arrivalTime = ?, departureTime = ? WHERE reservationID = ?";
 
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
             preparedStatement.setString(1, reservation.getHotelName());
             preparedStatement.setString(2, reservation.getRoomType());
-            preparedStatement.setString(3, reservation.getRoomID());
+            preparedStatement.setInt(3, reservation.getRoomID());
             preparedStatement.setInt(4, reservation.getGuestCount());
             preparedStatement.setString(5, reservation.getDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
             preparedStatement.setString(6, reservation.getArrivalTime().toString());
             preparedStatement.setString(7, reservation.getDepartureTime().toString());
-            preparedStatement.setInt(8, reservation.getUserId());
-            preparedStatement.setString(9, reservation.getRoomID());
+            preparedStatement.setInt(8, reservation.getReservationId());
+
 
             int rowsUpdated = preparedStatement.executeUpdate();
             return rowsUpdated > 0;
@@ -98,8 +97,8 @@ public class ReservationService {
     }
 
     // Method to delete a reservation
-    public boolean deleteReservation(int reservationId) {
-        String query = "DELETE FROM reservation WHERE id = ?";
+    public static boolean deleteReservation(int reservationId) {
+        String query = "DELETE FROM reservation WHERE reservationID = ?";
 
         try (Connection connection = DatabaseConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {

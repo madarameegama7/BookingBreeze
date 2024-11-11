@@ -4,6 +4,7 @@ public class HotelSession {
 
         private static HotelSession instance;
         private int userId;
+        private String username;
 
 
         private HotelSession() {}
@@ -22,5 +23,13 @@ public class HotelSession {
         public int getUserId() {
             return userId;
         }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getUsername() {
+        return username;
+    }
 
     }

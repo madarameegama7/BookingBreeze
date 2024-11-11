@@ -88,6 +88,7 @@ package com.example.controllers;
 //}
 import com.example.backend.UserService;
 import com.example.models.UserRole;
+import com.example.utility.HotelSession;
 import com.example.utility.UserSession;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -125,48 +126,51 @@ public class LoginController {
 
         UserRole role = userService.login(email, password);
 
-        if (role != null) {
-            // Based on the role, load the appropriate dashboard
-            try {
-                if (role == UserRole.ADMIN) {
-                    loadAdminDashboard(event);
-                } else if (role == UserRole.USER) {
-                    loadUserDashboard(event);
+
+            if (role != null) {
+                // Based on the role, load the appropriate dashboard
+                try {
+                    if (role == UserRole.ADMIN) {
+                        loadAdminDashboard(event);
+                    } else if (role == UserRole.USER) {
+                        loadUserDashboard(event);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
+            } else {
+                showAlert("Invalid email or password.");
             }
-        } else {
-            showAlert("Invalid email or password.");
+
+    }
+
+        private void loadAdminDashboard (ActionEvent event) throws IOException {
+            Parent adminRoot = FXMLLoader.load(getClass().getResource("/com/example/fxml/admindashboard.fxml"));
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(adminRoot));
+            stage.show();
+        }
+
+        private void loadUserDashboard (ActionEvent event) throws IOException {
+            Parent userRoot = FXMLLoader.load(getClass().getResource("/com/example/fxml/userdashboard.fxml"));
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(userRoot));
+            stage.show();
+        }
+
+        @FXML
+        private void switchToSignup (ActionEvent event) throws IOException {
+            Parent root = FXMLLoader.load(getClass().getResource("/com/example/fxml/signup.fxml"));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        }
+        private void showAlert (String message){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Login Information");
+            alert.setHeaderText(null);
+            alert.setContentText(message);
+            alert.showAndWait();
         }
     }
 
-    private void loadAdminDashboard(ActionEvent event) throws IOException {
-        Parent adminRoot = FXMLLoader.load(getClass().getResource("/com/example/fxml/admindashboard.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(new Scene(adminRoot));
-        stage.show();
-    }
-
-    private void loadUserDashboard(ActionEvent event) throws IOException {
-        Parent userRoot = FXMLLoader.load(getClass().getResource("/com/example/fxml/userdashboard.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(new Scene(userRoot));
-        stage.show();
-    }
-
-    @FXML
-    private void switchToSignup(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/com/example/fxml/signup.fxml"));
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.show();
-    }
-    private void showAlert(String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Login Information");
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
-}
