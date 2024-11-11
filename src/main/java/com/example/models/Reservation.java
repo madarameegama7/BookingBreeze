@@ -11,19 +11,24 @@ public class Reservation {
     private String name;
     private String hotelName;
     private String roomType;
-    private String roomID;
+    private int roomID;
     private int guestCount;
     private LocalDate date;
     private LocalTime arrivalTime;
     private LocalTime departureTime;
 
     // Modify constructor to accept java.sql.Date
-    public Reservation(String name, int userId, Date date, String hotelName, String roomType) {
-        this.name = name;
+    public Reservation(int userId, String name, String hotelName, String roomType,
+                       int roomID, int guestCount, LocalDate date, LocalTime arrivalTime, LocalTime departureTime) {
         this.userId = userId;
-        this.date = date.toLocalDate();  // Convert java.sql.Date to LocalDate
+        this.name = name;
         this.hotelName = hotelName;
         this.roomType = roomType;
+        this.roomID = roomID;
+        this.guestCount = guestCount;
+        this.date = date;
+        this.arrivalTime = arrivalTime;
+        this.departureTime = departureTime;
     }
 
     // Default constructor
@@ -71,11 +76,11 @@ public class Reservation {
         this.roomType = roomType;
     }
 
-    public String getRoomID() {
+    public int getRoomID() {
         return roomID;
     }
 
-    public void setRoomID(String roomID) {
+    public void setRoomID(int roomID) {
         this.roomID = roomID;
     }
 
