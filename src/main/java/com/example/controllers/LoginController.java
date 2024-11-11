@@ -1,6 +1,7 @@
 package com.example.controllers;
 
 import com.example.backend.UserService;
+import com.example.utility.HotelSession;
 import com.example.utility.UserSession;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -37,7 +38,7 @@ public class LoginController {
         int userId = userService.login(email, password);
 
         if (userId != -1) {
-            UserSession.getInstance().setUserId(userId);// If userId is valid, login successful
+            HotelSession.getInstance().setUserId(userId);// If userId is valid, login successful
             // Store the userId for later use (e.g., in a session or controller)
             System.out.println("User ID: " + userId);
 
